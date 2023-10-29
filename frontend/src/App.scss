@@ -1,20 +1,149 @@
-$mainColor: #282c34;
-$textColor: white;
-$fontSize: calc(10px + 2vmin);
+@font-face {
+  font-family: Gabarito;
+  src: url(../public/Gabarito.ttf);
+}
+
+$darkThemeMain1: #282c34;
+$darkThemeMain2: #1d1f25;
+$darkThemeMain3: #474c57;
+$darkThemeText: white;
+
+$lightThemeMain1: rgb(255, 255, 255);
+$lightThemeMain2: rgb(231, 231, 231);
+$lightThemeMain3: rgb(219, 219, 219);
+$lightThemeText: black;
+
+$fontSize: 20px;
+$paddingSize: 10px;
+$borderRadius: 30px;
+$iconSizeSmall: 25px;
+$iconSizeMedium: 40px;
+$animationSpeed: .5s;
+
+.darkTheme {
+  background-color: $darkThemeMain1;
+  color: $darkThemeText;
+
+  .bgColor1 {
+    background-color: $darkThemeMain1;
+  }
+
+  .bgColor2 {
+    background-color: $darkThemeMain2;
+  }
+
+  .bgColor3 {
+    background-color: $darkThemeMain3;
+  }
+
+  .smallIcon {
+    filter: invert(1);
+  }
+
+  .mediumIcon {
+    filter: invert(1);
+  }
+}
+
+.lightTheme {
+  background-color: $lightThemeMain1;
+  color: $lightThemeText;
+
+  .bgColor1 {
+    background-color: $lightThemeMain1;
+  }
+
+  .bgColor2 {
+    background-color: $lightThemeMain2;
+  }
+
+  .bgColor3 {
+    background-color: $lightThemeMain3;
+  }
+}
+
+@mixin horizontalFlex {
+  display: flex;
+  align-items: center;
+  gap: $paddingSize;
+}
 
 body {
   margin: 0;
-  font-family: Circular, sans-serif;
-  background-color: $mainColor;
-  color: $textColor;
+  font-family: Gabarito;
   font-size: $fontSize;
 }
 
-.App {
-  text-align: center;
+.app {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
+
+  .topbar {
+    padding: $paddingSize;
+    display: flex;
+    justify-content: space-between;
+
+    .topbarContentWraper {
+      @include horizontalFlex;
+    }
+  }
+
+  .appContent {
+    display: flex;
+    height: 100%;
+
+    .leftbar {
+      width: 250px;
+      padding: $paddingSize;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .elemWraper {
+        display: flex;
+        flex-direction: column;
+        gap: $paddingSize;
+      }
+
+      .leftbarElem {
+        @include horizontalFlex;
+        justify-content: space-between;
+        padding: $paddingSize;
+        border-radius: $borderRadius;
+      }
+
+      .hideButton {
+        cursor: pointer;
+
+        img {
+          transition: transform $animationSpeed;
+        }
+      }
+
+      .hideButton:hover {
+        img {
+          transform: rotate(180deg);
+        }
+      }
+
+      .optionsButton {
+        cursor: pointer;
+      }
+    }
+
+    .workspace {
+      width: 100%;
+    }
+  }
+
+  .smallIcon {
+    height: $iconSizeSmall;
+    width: $iconSizeSmall;
+  }
+
+  .mediumIcon {
+    height: $iconSizeMedium;
+    width: $iconSizeMedium;
+  }
 }

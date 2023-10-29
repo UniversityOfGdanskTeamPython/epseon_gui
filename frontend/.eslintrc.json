@@ -17,6 +17,8 @@
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "semi": [2, "never"]
+        "react/prop-types": "off",
+        "semi": [2, "never"],
+        "prettier/prettier": [2, {"endOfLine": "auto"}]
     }
 }
