@@ -1,4 +1,4 @@
-import arrowIcon from "../../assets/arrow.svg"
+import arrowIcon from "../../assets/arrow.svg";
 
 const HideButton = () => {
   return (
@@ -6,7 +6,7 @@ const HideButton = () => {
       <div>hide</div>
       <img src={arrowIcon} alt="arrow" className="smallIcon" />
     </div>
-  )
-}
+  );
+};
 
-export default HideButton
+export default HideButton;

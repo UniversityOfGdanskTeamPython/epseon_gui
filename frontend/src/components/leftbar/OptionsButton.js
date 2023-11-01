@@ -1,4 +1,4 @@
-import gearIcon from "../../assets/gear.svg"
+import gearIcon from "../../assets/gear.svg";
 
 const OptionsButton = () => {
   return (
@@ -6,7 +6,7 @@ const OptionsButton = () => {
       <div>options</div>
       <img src={gearIcon} alt="gear" className="smallIcon" />
     </div>
-  )
-}
+  );
+};
 
-export default OptionsButton
+export default OptionsButton;

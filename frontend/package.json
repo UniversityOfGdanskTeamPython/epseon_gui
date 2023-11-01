@@ -1,6 +1,22 @@
 {
+  "description": "an web app application for finding potential energy curves",
   "name": "pec-frontend",
   "version": "0.1.0",
+  "keywords": [
+    "React",
+    "JavaScript",
+    "Python",
+    "FastAPI"
+  ],
+  "homepage": "https://github.com/UniversityOfGdanskTeamPython/pec_framework_web_app",
+  "bugs": {},
+  "license": "MIT",
+  "authors": [
+    "Krzysztof Wisniewski <argmaster.world@gmail.com>",
+    "Mateusz Szpyruk <mateusz.szpyruk@gmail.com>",
+    "Mateusz Zalewski <m.zalewski.924@studms.ug.edu.pl>",
+    "Paweł Olszewski <pawelolszewski.it@gmail.com>"
+  ],
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -21,10 +37,28 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off"
+    }
   },
   "browserslist": {
     "production": [

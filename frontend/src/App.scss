@@ -84,7 +84,7 @@ body {
     display: flex;
     justify-content: space-between;
 
-    .topbarContentWraper {
+    .topbarContentWrapper {
       @include horizontalFlex;
     }
   }
@@ -100,7 +100,7 @@ body {
       flex-direction: column;
       justify-content: space-between;
 
-      .elemWraper {
+      .elemWrapper {
         display: flex;
         flex-direction: column;
         gap: $paddingSize;

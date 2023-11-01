@@ -1,5 +1,5 @@
 const Workspace = () => {
-  return <div className="workspace">Workspace</div>
-}
+  return <div className="workspace">Workspace</div>;
+};
 
-export default Workspace
+export default Workspace;

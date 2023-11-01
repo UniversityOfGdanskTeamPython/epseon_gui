@@ -1,23 +1,24 @@
-import logo from "../../assets/logo.svg"
+import logo from "../../assets/logo.svg";
 
 const Topbar = ({ changeTheme }) => {
   return (
     <div className="topbar bgColor2">
-      <div className="topbarContentWraper">
+      <div className="topbarContentWrapper">
         <img src={logo} alt="logo" className="mediumIcon" />
         <div>PEC framework</div>
       </div>
-      <div className="topbarContentWraper">
+      <div className="topbarContentWrapper">
         <button
           onClick={() => {
-            changeTheme()
-          }}>
+            changeTheme();
+          }}
+        >
           Theme changer
         </button>
         <div>lang changer</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Topbar
+export default Topbar;
