@@ -9,7 +9,10 @@
     "FastAPI"
   ],
   "homepage": "https://github.com/UniversityOfGdanskTeamPython/pec_framework_web_app",
-  "bugs": {},
+  "bugs": {
+    "url": "https://github.com/UniversityOfGdanskTeamPython/pec_framework_web_app/issues"
+  },
+
   "license": "MIT",
   "authors": [
     "Krzysztof Wisniewski <argmaster.world@gmail.com>",
