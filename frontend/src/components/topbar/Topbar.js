@@ -1,6 +1,6 @@
 import logo from "../../assets/logo.svg";
 
-const Topbar = ({ changeTheme }) => {
+const Topbar = ({changeTheme}) => {
     return (
         <div className="topbar bgColor2">
             <div className="topbarContentWrapper">

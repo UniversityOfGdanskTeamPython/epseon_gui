@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 import "./App.scss";
 import Leftbar from "./components/leftbar/Leftbar";
 import Topbar from "./components/topbar/Topbar";
