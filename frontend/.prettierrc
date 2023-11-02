@@ -4,6 +4,5 @@
     "endOfLine": "lf",
     "printWidth": 88,
     "trailingComma": "none",
-    "singleQuote": false,
     "proseWrap": "always"
 }
