@@ -1,0 +1,44 @@
+{
+    "workspaces": [
+        {
+            "id": 1,
+            "name": "data gen 1"
+        },
+        {
+            "id": 2,
+            "name": "data gen 2"
+        },
+        {
+            "id": 3,
+            "name": "data gen 3"
+        },
+        {
+            "id": 4,
+            "name": "data gen 4"
+        },
+        {
+            "id": 5,
+            "name": "data gen 5"
+        },
+        {
+            "id": 6,
+            "name": "data gen 6"
+        },
+        {
+            "id": 7,
+            "name": "data gen 7"
+        },
+        {
+            "id": 8,
+            "name": "data gen 8"
+        },
+        {
+            "id": 9,
+            "name": "data gen 9"
+        },
+        {
+            "id": 10,
+            "name": "data gen 10"
+        }
+    ]
+}

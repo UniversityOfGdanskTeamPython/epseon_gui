@@ -1,8 +1,10 @@
 import {useState} from "react";
+import {Provider} from "react-redux";
+import store from "./ducks/store";
 import "./App.scss";
 import Leftbar from "./components/leftbar/Leftbar";
 import Topbar from "./components/topbar/Topbar";
-import Workspace from "./components/Workspace";
+import Workspace from "./components/workspace/Workspace";
 
 const App = () => {
     const [theme, setTheme] = useState("darkTheme");
@@ -11,13 +13,15 @@ const App = () => {
     };
 
     return (
-        <div className={`app ${theme}`}>
-            <Topbar changeTheme={changeTheme} />
-            <div className="appContent">
-                <Leftbar />
-                <Workspace />
+        <Provider store={store}>
+            <div className={`app ${theme}`}>
+                <Topbar changeTheme={changeTheme} />
+                <div className="appContent">
+                    <Leftbar />
+                    <Workspace />
+                </div>
             </div>
-        </div>
+        </Provider>
     );
 };
 

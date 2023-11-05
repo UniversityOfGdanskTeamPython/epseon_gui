@@ -19,6 +19,25 @@ $borderRadius: 30px;
 $iconSizeSmall: 25px;
 $iconSizeMedium: 40px;
 $animationSpeed: .5s;
+$leftBarWidth: 200px;
+$scrollbarSize: 5px;
+
+@mixin scrollbar($thumbColor, $trackColor: mix($thumbColor, white,  50%)) {
+  &::-webkit-scrollbar {
+    width:  $scrollbarSize;
+    height: $scrollbarSize;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumbColor;
+    border-radius: $scrollbarSize;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $trackColor;
+  }
+}
 
 .darkTheme {
   background-color: $darkThemeMain1;
@@ -43,6 +62,10 @@ $animationSpeed: .5s;
   .mediumIcon {
     filter: invert(1);
   }
+
+  .scroll {
+    @include scrollbar($darkThemeMain2, $darkThemeMain3);
+  }
 }
 
 .lightTheme {
@@ -59,6 +82,10 @@ $animationSpeed: .5s;
 
   .bgColor3 {
     background-color: $lightThemeMain3;
+  }
+
+  .scroll {
+    @include scrollbar($lightThemeMain3, $lightThemeMain2);
   }
 }
 
@@ -92,9 +119,10 @@ body {
   .appContent {
     display: flex;
     height: 100%;
+    width: 100vw;
 
     .leftbar {
-      width: 250px;
+      width: $leftBarWidth;
       padding: $paddingSize;
       display: flex;
       flex-direction: column;
@@ -132,8 +160,23 @@ body {
       }
     }
 
-    .workspace {
-      width: 100%;
+    .workspaceWrapper {
+      width: calc(100% - $leftBarWidth);
+
+      .workspacesBar {
+        display: flex;
+        gap: $paddingSize;
+        padding: $paddingSize;
+        overflow-x: scroll;
+        white-space: nowrap;
+
+        .workspaceCard {
+          display: flex;
+          gap: $paddingSize;
+          border-radius: $borderRadius;
+          padding: $paddingSize;
+        }
+      }
     }
   }
 

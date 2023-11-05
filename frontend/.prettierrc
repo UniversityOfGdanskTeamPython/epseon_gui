@@ -1,7 +1,7 @@
 {
     "tabWidth": 4,
     "useTabs": false,
-    "endOfLine": "lf",
+    "endOfLine": "auto",
     "printWidth": 88,
     "trailingComma": "none",
     "proseWrap": "always",
