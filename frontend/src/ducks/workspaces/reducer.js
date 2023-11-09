@@ -2,7 +2,7 @@ import types from "./types";
 import storeInit from "../storeInitData.json";
 
 const workspacesReducer = (
-    state = {workspaces: storeInit.workspaces, openWorkspace: null},
+    state = {workspaces: storeInit.workspaces, openWorkspaceId: null},
     action
 ) => {
     switch (action.type) {
@@ -16,15 +16,15 @@ const workspacesReducer = (
                 workspaces: state.workspaces.filter((workspace) => {
                     return workspace.id === action.payload ? false : true;
                 }),
-                openWorkspace:
-                    state.openWorkspace.id === action.payload.id
-                        ? state.openWorkspace
-                        : null
+                openWorkspaceId:
+                    state.openWorkspaceId === action.payload
+                        ? null
+                        : state.openWorkspaceId
             };
         case types.SET_CURRENT_WORKSPACE:
             return {
                 ...state,
-                openWorkspace: action.payload
+                openWorkspaceId: action.payload
             };
         default:
             return state;

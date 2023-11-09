@@ -14,8 +14,12 @@ $lightThemeMain3: rgb(219, 219, 219);
 $lightThemeText: black;
 
 $fontSize: 20px;
+$fontSizeSmallText: 15px;
+$boldFontWeight: 600;
 $paddingSize: 10px;
+$paddingSizeSmall: 5px;
 $borderRadius: 30px;
+$borderRadiusSmall: 15px;
 $iconSizeSmall: 25px;
 $iconSizeMedium: 40px;
 $animationSpeed: .5s;
@@ -36,6 +40,36 @@ $scrollbarSize: 5px;
 
   &::-webkit-scrollbar-track {
     background: $trackColor;
+  }
+}
+
+@mixin input($bgColor, $textColor, $bgColorFocus: mix($bgColor, black,  90%)) {
+  input {
+    background-color: $bgColor;
+    color: $textColor;
+    border-radius: $borderRadius;
+    border: none;
+    padding: $paddingSizeSmall;
+  }
+
+  input:focus {
+    outline: none;
+    background-color: $bgColorFocus
+  }
+}
+
+@mixin selectable($bgColor, $textColor, $bgColorFocus: mix($bgColor, black,  90%)) {
+  .selectable {
+    background-color: $bgColor;
+    color: $textColor;
+    border-radius: $borderRadius;
+    border: none;
+    padding: $paddingSizeSmall;
+  }
+
+  .selected {
+    outline: none;
+    background-color: $bgColorFocus
   }
 }
 
@@ -66,6 +100,8 @@ $scrollbarSize: 5px;
   .scroll {
     @include scrollbar($darkThemeMain2, $darkThemeMain3);
   }
+
+  @include input($darkThemeMain2, $darkThemeText)
 }
 
 .lightTheme {
@@ -87,6 +123,8 @@ $scrollbarSize: 5px;
   .scroll {
     @include scrollbar($lightThemeMain3, $lightThemeMain2);
   }
+
+  @include input($lightThemeMain2, $lightThemeText)
 }
 
 @mixin horizontalFlex {
@@ -106,6 +144,10 @@ body {
   flex-direction: column;
   height: 100vh;
 
+  .smallText {
+    font-size: $fontSizeSmallText;
+  }
+
   .topbar {
     padding: $paddingSize;
     display: flex;
@@ -118,7 +160,7 @@ body {
 
   .appContent {
     display: flex;
-    height: 100%;
+    height: calc(100vh - 2 * $paddingSize - $iconSizeMedium);
     width: 100vw;
 
     .leftbar {
@@ -162,6 +204,8 @@ body {
 
     .workspaceWrapper {
       width: calc(100% - $leftBarWidth);
+      display: flex;
+      flex-direction: column;
 
       .workspacesBar {
         display: flex;
@@ -175,6 +219,76 @@ body {
           gap: $paddingSize;
           border-radius: $borderRadius;
           padding: $paddingSize;
+        }
+      }
+
+      .workspace {
+        margin: $paddingSize;
+        padding: $paddingSize;
+        border-radius: $borderRadius;
+        flex-grow: 1;
+        // height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: $paddingSize;
+
+        .generationViewHorizontalFlex {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          height: 100%;
+          gap: $paddingSize;
+
+          .generationViewVerticalFlex {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            height: 100%;
+            gap: $paddingSize;
+          }
+        }
+
+        .panel {
+          border-radius: $borderRadius;
+          padding: $paddingSize;
+          display: flex;
+          flex-direction: column;
+
+          .panelTitle {
+            font-weight: $boldFontWeight;
+            align-self: center;
+            margin-bottom: $paddingSize;
+          }
+
+          .formInput {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: $paddingSizeSmall;
+
+            label {
+              font-size: $fontSizeSmallText;
+            }
+          }
+
+          .deviceCardWrapper {
+            display: flex;
+            flex-direction: column;
+            gap: $paddingSize;
+
+            .deviceCard {
+              padding: $paddingSizeSmall;
+              border-radius: $borderRadiusSmall;
+            }
+          }
+        }
+
+        .titlePanel {
+          border-radius: $borderRadius;
+          padding: $paddingSize;
+          display: flex;
+          font-weight: $boldFontWeight;
+          justify-content: center;
         }
       }
     }

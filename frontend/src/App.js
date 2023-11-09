@@ -4,7 +4,7 @@ import store from "./ducks/store";
 import "./App.scss";
 import Leftbar from "./components/leftbar/Leftbar";
 import Topbar from "./components/topbar/Topbar";
-import Workspace from "./components/workspace/Workspace";
+import WorkspaceWrapper from "./components/workspace/WorkspaceWrapper";
 
 const App = () => {
     const [theme, setTheme] = useState("darkTheme");
@@ -18,7 +18,7 @@ const App = () => {
                 <Topbar changeTheme={changeTheme} />
                 <div className="appContent">
                     <Leftbar />
-                    <Workspace />
+                    <WorkspaceWrapper />
                 </div>
             </div>
         </Provider>

@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 import workspacesReducer from "./workspaces/reducer";
 import languagesReducer from "./languages/reducer";
+import devicesReducer from "./devices/reducer";
 
 const Reducer = combineReducers({
     workspacesReducer,
-    languagesReducer
+    languagesReducer,
+    devicesReducer
 });
 
 const store = createStore(Reducer, applyMiddleware(logger, thunk));

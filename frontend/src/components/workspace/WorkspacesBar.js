@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
-import {setCurrentWorkspace} from "../../ducks/workspaces/actions";
+import {setCurrentWorkspace, deleteWorkspace} from "../../ducks/workspaces/actions";
 import {useRef} from "react";
 
-const WorkspacesBar = ({workspaces}, props) => {
+const WorkspacesBar = ({workspaces, setCurrentWorkspace, deleteWorkspace}, props) => {
     const barRef = useRef(null);
 
     const workspaceCard = (workspace) => {
@@ -11,14 +11,14 @@ const WorkspacesBar = ({workspaces}, props) => {
                 key={workspace.id}
                 className="workspaceCard bgColor2"
                 onClick={() => {
-                    console.log("test");
+                    setCurrentWorkspace(workspace.id);
                 }}
             >
                 <div>{workspace.name}</div>
                 <div
                     onClick={(event) => {
                         event.stopPropagation();
-                        console.log(`del ${workspace.id}`);
+                        deleteWorkspace(workspace.id);
                     }}
                 >
                     x
@@ -49,7 +49,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    setCurrentWorkspace
+    setCurrentWorkspace,
+    deleteWorkspace
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkspacesBar);
