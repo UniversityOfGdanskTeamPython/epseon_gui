@@ -1,8 +1,20 @@
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
 import DevicePanel from "./DevicePanel";
 
-const GenerationView = ({openWorkspaceId, workspaces}, props) => {
+const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
     // const workspace = workspaces.find((workspace) => workspace.id === openWorkspaceId);
+    const buttons = () => {
+        return (
+            <div className="panel bgColor1">
+                <div className="button">
+                    generate{" "}
+                    <FontAwesomeIcon icon="fa-solid fa-gears" className="smallIcon" />
+                </div>
+                {noData ? null : <button>see generated data</button>}
+            </div>
+        );
+    };
 
     return (
         <div className="workspace bgColor2">
@@ -35,7 +47,13 @@ const GenerationView = ({openWorkspaceId, workspaces}, props) => {
                             <label>h</label>
                             <input />
                         </div>
-                        <div>upload file ↓</div>
+                        <div>
+                            upload file{" "}
+                            <FontAwesomeIcon
+                                icon="fa-solid fa-file-arrow-up"
+                                className="smallIcon"
+                            />
+                        </div>
                     </div>
                     <div className="panel bgColor1">
                         <div className="panelTitle"> Hardware settings</div>
@@ -57,8 +75,7 @@ const GenerationView = ({openWorkspaceId, workspaces}, props) => {
                 </div>
                 <DevicePanel />
             </div>
-            <button>generate</button>
-            <button>see generated data</button>
+            {buttons()}
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
 import {setCurrentWorkspace, deleteWorkspace} from "../../ducks/workspaces/actions";
 import {useRef} from "react";
@@ -15,14 +16,14 @@ const WorkspacesBar = ({workspaces, setCurrentWorkspace, deleteWorkspace}, props
                 }}
             >
                 <div>{workspace.name}</div>
-                <div
+                <FontAwesomeIcon
+                    icon="fa-solid fa-xmark"
+                    className="smallIcon delete"
                     onClick={(event) => {
                         event.stopPropagation();
                         deleteWorkspace(workspace.id);
                     }}
-                >
-                    x
-                </div>
+                />
             </div>
         );
     };

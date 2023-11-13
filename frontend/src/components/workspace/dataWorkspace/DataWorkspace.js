@@ -5,7 +5,7 @@ import PreviewView from "./PreviewView";
 const DataWorkspace = ({openWorkspaceId, workspaces}, props) => {
     const workspace = workspaces.find((workspace) => workspace.id === openWorkspaceId);
 
-    return workspace.generateMode ? <GenerationView /> : <PreviewView />;
+    return workspace.data !== null ? <PreviewView /> : <GenerationView noData={true} />;
 };
 
 const mapStateToProps = (state) => {

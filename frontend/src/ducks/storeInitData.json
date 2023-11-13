@@ -3,76 +3,67 @@
         {
             "id": 1,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 1"
         },
         {
             "id": 2,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 2"
         },
         {
             "id": 3,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 3"
         },
         {
             "id": 4,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 4"
         },
         {
             "id": 5,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 5"
         },
         {
             "id": 6,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 6"
         },
         {
             "id": 7,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 7"
         },
         {
             "id": 8,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 8"
         },
         {
             "id": 9,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 9"
         },
         {
             "id": 10,
             "type": "data",
-            "generateMode": true,
             "data": null,
             "name": "data gen 10"
         }
     ],
     "devices": [
         {
+            "id": 0,
             "Device type": "CPU",
             "Device name": "Intel Core i7 4770k",
             "Physical core count": 4,
@@ -80,6 +71,7 @@
             "Instructions sets": "SSE4.4 SSE4.3 AVX2"
         },
         {
+            "id": 1,
             "Device type": "GPU",
             "Device name": "GTX 1060 6G",
             "SM count": 10,

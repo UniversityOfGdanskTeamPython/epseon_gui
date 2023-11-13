@@ -5,7 +5,7 @@ const DevicePanel = ({devices}, props) => {
         const objectEntries = Object.entries(deviceData);
         console.log(objectEntries);
         return (
-            <div className="deviceCard">
+            <div className="deviceCard" key={objectEntries.id}>
                 <div>select</div>
                 <div className="smallText">
                     {objectEntries.map((entry) => deviceCardField(entry[0], entry[1]))}

@@ -13,6 +13,8 @@ $lightThemeMain2: rgb(231, 231, 231);
 $lightThemeMain3: rgb(219, 219, 219);
 $lightThemeText: black;
 
+$deleteColor: rgb(161, 15, 15);
+
 $fontSize: 20px;
 $fontSizeSmallText: 15px;
 $boldFontWeight: 600;
@@ -20,10 +22,10 @@ $paddingSize: 10px;
 $paddingSizeSmall: 5px;
 $borderRadius: 30px;
 $borderRadiusSmall: 15px;
-$iconSizeSmall: 25px;
-$iconSizeMedium: 40px;
-$animationSpeed: .5s;
-$leftBarWidth: 200px;
+$iconSizeSmall: 20px;
+$iconSizeMedium: 25px;
+$iconSizeBig: 40px;
+$animationSpeed: .3s;
 $scrollbarSize: 5px;
 
 @mixin scrollbar($thumbColor, $trackColor: mix($thumbColor, white,  50%)) {
@@ -90,10 +92,14 @@ $scrollbarSize: 5px;
   }
 
   .smallIcon {
-    filter: invert(1);
+    color: $darkThemeText
   }
 
   .mediumIcon {
+    color: $darkThemeText
+  }
+
+  .bigIcon {
     filter: invert(1);
   }
 
@@ -119,6 +125,18 @@ $scrollbarSize: 5px;
   .bgColor3 {
     background-color: $lightThemeMain3;
   }
+  
+  .smallIcon {
+    color: $lightThemeText
+  }
+
+  .mediumIcon {
+    color: $lightThemeText
+  }
+
+  .bigIcon {
+    color: $lightThemeText
+  }
 
   .scroll {
     @include scrollbar($lightThemeMain3, $lightThemeMain2);
@@ -137,6 +155,10 @@ body {
   margin: 0;
   font-family: Gabarito;
   font-size: $fontSize;
+
+  input {
+    font-family: Gabarito;
+  }
 }
 
 .app {
@@ -158,138 +180,128 @@ body {
     }
   }
 
-  .appContent {
+  .workspaceWrapper {
     display: flex;
+    flex-direction: column;
     height: calc(100vh - 2 * $paddingSize - $iconSizeMedium);
     width: 100vw;
 
-    .leftbar {
-      width: $leftBarWidth;
-      padding: $paddingSize;
+    .workspacesBar {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      gap: $paddingSize;
+      padding: $paddingSize;
+      overflow-x: scroll;
+      white-space: nowrap;
 
-      .elemWrapper {
+      .workspaceCard {
         display: flex;
-        flex-direction: column;
+        align-items: center;
         gap: $paddingSize;
-      }
-
-      .leftbarElem {
-        @include horizontalFlex;
-        justify-content: space-between;
-        padding: $paddingSize;
         border-radius: $borderRadius;
-      }
-
-      .hideButton {
+        padding: $paddingSize;
         cursor: pointer;
 
-        img {
-          transition: transform $animationSpeed;
+        .delete {
+          transition: $animationSpeed;
         }
-      }
 
-      .hideButton:hover {
-        img {
-          transform: rotate(180deg);
+        .delete:hover {
+          color: $deleteColor;
         }
-      }
-
-      .optionsButton {
-        cursor: pointer;
       }
     }
 
-    .workspaceWrapper {
-      width: calc(100% - $leftBarWidth);
+    .workspace {
+      margin: $paddingSize;
+      padding: $paddingSize;
+      border-radius: $borderRadius;
+      flex-grow: 1;
+      // height: auto;
       display: flex;
       flex-direction: column;
+      gap: $paddingSize;
 
-      .workspacesBar {
+      .generationViewHorizontalFlex {
         display: flex;
-        gap: $paddingSize;
-        padding: $paddingSize;
-        overflow-x: scroll;
-        white-space: nowrap;
-
-        .workspaceCard {
-          display: flex;
-          gap: $paddingSize;
-          border-radius: $borderRadius;
-          padding: $paddingSize;
-        }
-      }
-
-      .workspace {
-        margin: $paddingSize;
-        padding: $paddingSize;
-        border-radius: $borderRadius;
-        flex-grow: 1;
-        // height: auto;
-        display: flex;
-        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-evenly;
+        height: 100%;
         gap: $paddingSize;
 
-        .generationViewHorizontalFlex {
+        .generationViewVerticalFlex {
           display: flex;
-          align-items: center;
+          align-items: stretch;
+          flex-direction: column;
           justify-content: space-evenly;
           height: 100%;
           gap: $paddingSize;
+          flex: 1;
 
-          .generationViewVerticalFlex {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            height: 100%;
-            gap: $paddingSize;
+          div {
+            flex: 1;
+          }
+        }
+      }
+
+      .panel {
+        border-radius: $borderRadius;
+        padding: $paddingSize;
+        display: flex;
+        flex-direction: column;
+
+        .panelTitle {
+          font-weight: $boldFontWeight;
+          align-self: center;
+          margin-bottom: $paddingSize;
+        }
+
+        .formInput {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: $paddingSizeSmall;
+
+          label {
+            font-size: $fontSizeSmallText;
+            position: relative;
+            text-wrap: nowrap;
+            width: 0;
+            height: 0;
+            top: calc($paddingSizeSmall * -2);
+            left: calc($paddingSizeSmall * 2);
+          }
+          input {
+            width: 100%;
+            height: calc(1em + 2 * $paddingSizeSmall);
+            padding-left: calc(2 * $paddingSizeSmall);
           }
         }
 
-        .panel {
-          border-radius: $borderRadius;
-          padding: $paddingSize;
+        .deviceCardWrapper {
           display: flex;
           flex-direction: column;
+          gap: $paddingSize;
 
-          .panelTitle {
-            font-weight: $boldFontWeight;
-            align-self: center;
-            margin-bottom: $paddingSize;
-          }
-
-          .formInput {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+          .deviceCard {
             padding: $paddingSizeSmall;
-
-            label {
-              font-size: $fontSizeSmallText;
-            }
-          }
-
-          .deviceCardWrapper {
-            display: flex;
-            flex-direction: column;
-            gap: $paddingSize;
-
-            .deviceCard {
-              padding: $paddingSizeSmall;
-              border-radius: $borderRadiusSmall;
-            }
+            border-radius: $borderRadiusSmall;
           }
         }
 
-        .titlePanel {
+        .button {
           border-radius: $borderRadius;
-          padding: $paddingSize;
-          display: flex;
-          font-weight: $boldFontWeight;
-          justify-content: center;
+          padding: $paddingSizeSmall;
+          align-self: center;
+          align-items: center;
         }
+      }
+
+      .titlePanel {
+        border-radius: $borderRadius;
+        padding: $paddingSize;
+        display: flex;
+        font-weight: $boldFontWeight;
+        justify-content: center;
       }
     }
   }
@@ -297,10 +309,27 @@ body {
   .smallIcon {
     height: $iconSizeSmall;
     width: $iconSizeSmall;
+    cursor: pointer;
+    transition: transform $animationSpeed;
+  }
+
+  .smallIcon:hover {
+    transform: scale(1.25);
   }
 
   .mediumIcon {
     height: $iconSizeMedium;
     width: $iconSizeMedium;
+    cursor: pointer;
+    transition: transform $animationSpeed;
+  }
+
+  .mediumIcon:hover {
+    transform: scale(1.25);
+  }
+
+  .bigIcon {
+    height: $iconSizeBig;
+    width: $iconSizeBig;
   }
 }

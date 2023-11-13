@@ -2,7 +2,6 @@ import {useState} from "react";
 import {Provider} from "react-redux";
 import store from "./ducks/store";
 import "./App.scss";
-import Leftbar from "./components/leftbar/Leftbar";
 import Topbar from "./components/topbar/Topbar";
 import WorkspaceWrapper from "./components/workspace/WorkspaceWrapper";
 
@@ -15,11 +14,8 @@ const App = () => {
     return (
         <Provider store={store}>
             <div className={`app ${theme}`}>
-                <Topbar changeTheme={changeTheme} />
-                <div className="appContent">
-                    <Leftbar />
-                    <WorkspaceWrapper />
-                </div>
+                <Topbar theme={theme} changeTheme={changeTheme} />
+                <WorkspaceWrapper />
             </div>
         </Provider>
     );
