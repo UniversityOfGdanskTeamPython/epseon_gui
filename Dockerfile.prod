@@ -1,0 +1,16 @@
+
+FROM python:3.11.6-slim
+
+WORKDIR /code
+
+COPY ./backend /code/backend
+COPY ./pyproject.toml /code/
+
+RUN pip install --user poetry
+
+ENV PATH="/root/.local/bin:${PATH}"
+
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction --no-ansi
+
+WORKDIR /code/backend
