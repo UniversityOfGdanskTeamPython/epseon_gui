@@ -5,7 +5,7 @@ const Topbar = ({changeTheme}) => {
         <div className="topbar bgColor2">
             <div className="topbarContentWrapper">
                 <img src={logo} alt="logo" className="mediumIcon" />
-                <div>PEC framework</div>
+                <div>Epseon</div>
             </div>
             <div className="topbarContentWrapper">
                 <button

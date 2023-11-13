@@ -1,6 +1,6 @@
 {
   "description": "an web app application for finding potential energy curves",
-  "name": "pec-frontend",
+  "name": "epseon",
   "version": "0.1.0",
   "keywords": [
     "React",
