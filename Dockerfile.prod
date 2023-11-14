@@ -1,11 +1,16 @@
 
 FROM python:3.11.6-slim
 
-RUN pip install --upgrade pip
-
 WORKDIR /code
 
-COPY ./dist/epseon_gui-0.1.0-py3-none-any.whl .
-RUN pip install ./epseon_gui-0.1.0-py3-none-any.whl
-RUN rm ./epseon_gui-0.1.0-py3-none-any.whl
-ENTRYPOINT [ "/code/entrpoint.sh" ]
+COPY ./backend /code/backend
+COPY ./pyproject.toml /code/
+
+RUN pip install --user poetry
+
+ENV PATH="/root/.local/bin:${PATH}"
+
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-interaction --no-ansi
+
+WORKDIR /code/backend
