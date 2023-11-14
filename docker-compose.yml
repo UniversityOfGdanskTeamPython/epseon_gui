@@ -15,8 +15,5 @@ services:
     restart: always
     expose:
       - 5432
-    environment:
-      - DATABASE=postgres
-      - SQL_HOST=db
     env_file:
       - ./.env
