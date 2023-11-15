@@ -56,5 +56,8 @@ jobs:
             - name: Install dependencies
               run: poetry install --no-cache --sync
 
+            - name: Add the executable permission for install_hooks.py
+              run: chmod +x scripts/install_hooks.py
+
             - name: Run code quality checks with pre-commit
               run: poetry run poe run-code-quality-checks
