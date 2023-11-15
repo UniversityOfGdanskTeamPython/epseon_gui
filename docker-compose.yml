@@ -1,22 +1,22 @@
 version: "3.8"
 
 services:
-  web:
-    build: .
-    command: uvicorn epseon_gui.main:app --host 0.0.0.0 --port 8000
-    volumes:
-      - .:/code
-    ports:
-      - 2137:8000
-    depends_on:
-      - db
-  db:
-    image: docker.io/postgres:16.0
-    restart: always
-    expose:
-      - 5432
-    environment:
-      - DATABASE=postgres
-      - SQL_HOST=db
-    env_file:
-      - ./.env
+    web:
+        build: .
+        command: uvicorn epseon_gui.main:app --host 0.0.0.0 --port 8000
+        volumes:
+            - .:/code
+        ports:
+            - 2137:8000
+        depends_on:
+            - db
+    db:
+        image: docker.io/postgres:16.0
+        restart: always
+        expose:
+            - 5432
+        environment:
+            - DATABASE=postgres
+            - SQL_HOST=db
+        env_file:
+            - ./.env

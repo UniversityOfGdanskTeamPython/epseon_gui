@@ -1,8 +1,14 @@
+"""Backend of EPSEON GUI."""
+from __future__ import annotations
+
+from typing import Dict
+
 from fastapi import FastAPI
-from epseon_gui.database import SessionLocal, engine
 
 app = FastAPI()
 
+
 @app.get("/")
-def read_root():
+def read_root() -> Dict[str, str]:
+    """Root."""
     return {"Test": "test"}
