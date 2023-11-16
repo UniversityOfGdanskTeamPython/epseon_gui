@@ -2,7 +2,9 @@ version: "3.8"
 
 services:
     web:
-        build: .
+        build:
+            context: .
+            dockerfile: development.Dockerfile
         command: uvicorn epseon_gui.main:app --host 0.0.0.0 --port 8000
         volumes:
             - .:/code

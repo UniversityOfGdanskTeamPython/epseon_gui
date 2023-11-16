@@ -100,7 +100,26 @@ run-unit-tests = [
     { cmd = "pytest --log-level=DEBUG -s -n logical" },
 ]
 run-type-checks = [{ cmd = "mypy backend/epseon_gui test/ scripts/" }]
+#--------------------------------------------------------------------------------------
+#run or build the development enviroment in docker container
+run-docker-development = [
+    { cmd = "docker-compose -f docker-compose.development.yml up -d" }
+]
+#stop and remove the Docker container for the development environment
+delete-docker-development = [
+    { cmd = "docker-compose -f docker-compose.development.yml down"}
+]
+#-------------
+#run or build production enviroment in docker
+run-docker-production = [
+    { cmd = "docker-compose -f docker-compose.production.yml up -d"}
+]
+#stop and remove the Docker container for the production environment
+delete-docker-production = [
+    { cmd = "docker-compose -f docker-compose.production.yml down"}
 
+]
+#--------------------------------------------------------------------------------------
 [tool.isort]
 profile = "black"
 src_paths = ["src", "test"]

@@ -1,15 +1,7 @@
 ---
-name: Syntax feature request
-about: Request new functional feature.
-title: ""
-labels: "enhancement"
-assignees: ""
----
 
-**_I have verified that this feature is not listed as implemented in README.md on `main`
-branch_** (yes/no)
-
----
+name: Feature request about: Request new functional feature. title: "" labels:
+"enhancement" assignees: ""
 
 **Describe how this feature should work**
 
