@@ -63,11 +63,11 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                     <div className="panel bgColor1">
                         <div className="panelTitle">{t("Hardware settings")}</div>
                         <div className="formInput">
-                            <label>{t("Batch size")}</label>
+                            <label>{t("Dispatch count")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>{t("thread count")}</label>
+                            <label>{t("Group size")}</label>
                             <input />
                         </div>
                         <div className="formInput">
