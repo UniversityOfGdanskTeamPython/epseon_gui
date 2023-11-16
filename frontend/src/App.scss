@@ -216,29 +216,23 @@ body {
       padding: $paddingSize;
       border-radius: $borderRadius;
       flex-grow: 1;
-      // height: auto;
       display: flex;
       flex-direction: column;
       gap: $paddingSize;
 
-      .generationViewHorizontalFlex {
-        display: flex;
-        align-items: stretch;
-        justify-content: space-evenly;
-        height: 100%;
+      .generationViewFirstFlex {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: $paddingSize;
+        flex-grow: 1;
 
-        .generationViewVerticalFlex {
+        .generationViewSecondFlex {
           display: flex;
-          align-items: stretch;
           flex-direction: column;
-          justify-content: space-evenly;
-          height: 100%;
           gap: $paddingSize;
-          flex: 1;
 
           div {
-            flex: 1;
+            flex-grow: 1;
           }
         }
       }
@@ -303,6 +297,28 @@ body {
         font-weight: $boldFontWeight;
         justify-content: center;
       }
+
+      .buttonsPanel {
+        display: flex;
+        gap: $paddingSize;
+        justify-content: center;
+
+        .button {
+          border-radius: $borderRadius;
+          padding: $paddingSize;
+          align-self: center;
+          align-items: center;
+          text-align: center;
+          cursor: pointer;
+          flex: 1;
+        }
+
+        .button:hover {
+          .smallIcon {
+            transform: scale(1.25);
+          }
+        }
+      }
     }
   }
 
@@ -331,5 +347,47 @@ body {
   .bigIcon {
     height: $iconSizeBig;
     width: $iconSizeBig;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .app {
+    .workspaceWrapper {
+      .workspace {
+        .generationViewFirstFlex {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: $paddingSize;
+          flex-grow: 1;
+  
+          .generationViewSecondFlex {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: $paddingSize;
+  
+            // div {
+            //   flex-grow: 1;
+            // }
+          }
+        }
+        // .generationViewFirstFlex {
+        //   display: flex;
+        //   height: 100%;
+        //   gap: $paddingSize;
+  
+        //   div {
+        //     flex-grow: 2;
+        //   }
+  
+        //   .generationViewSecondFlex {
+        //     display: flex;
+        //     flex-direction: row;
+        //     gap: $paddingSize;
+        //     flex-grow: 1;
+        //     justify-content: space-evenly;
+        //   }
+        // }
+      }
+    }
   }
 }

@@ -1,9 +1,9 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {connect} from "react-redux";
+import {setLanguage} from "../../ducks/languages/actions";
 import logo from "../../assets/logo.svg";
-// import langIcon from "../../assets/lang.svg";
-// import gearIcon from "../../assets/gear.svg";
 
-const Topbar = ({theme, changeTheme}) => {
+const Topbar = ({theme, changeTheme, language, setLanguage}) => {
     const themeSwitch = () => {
         if (theme === "darkTheme") {
             return (
@@ -23,6 +23,18 @@ const Topbar = ({theme, changeTheme}) => {
         );
     };
 
+    const languageSwitch = () => {
+        const nextLanguage = language === "ENG" ? "PL" : "ENG";
+
+        return (
+            <FontAwesomeIcon
+                icon="fa-solid fa-globe"
+                className="mediumIcon"
+                onClick={() => setLanguage(nextLanguage)}
+            />
+        );
+    };
+
     return (
         <div className="topbar bgColor2">
             <div className="topbarContentWrapper">
@@ -32,7 +44,7 @@ const Topbar = ({theme, changeTheme}) => {
             <div className="topbarContentWrapper">
                 {/* <img src={langIcon} alt="change language" className="smallIcon" /> */}
                 {themeSwitch()}
-                <FontAwesomeIcon icon="fa-solid fa-globe" className="mediumIcon" />
+                {languageSwitch()}
                 <FontAwesomeIcon icon="fa-solid fa-gear" className="mediumIcon" />
                 {/* <img src={gearIcon} alt="options" className="smallIcon" /> */}
             </div>
@@ -40,4 +52,14 @@ const Topbar = ({theme, changeTheme}) => {
     );
 };
 
-export default Topbar;
+const mapStateToProps = (state) => {
+    return {
+        language: state.languagesReducer.language
+    };
+};
+
+const mapDispatchToProps = {
+    setLanguage
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Topbar);

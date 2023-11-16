@@ -1,76 +1,81 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
+import t from "../../../ducks/languages/operations";
 import DevicePanel from "./DevicePanel";
 
 const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
     // const workspace = workspaces.find((workspace) => workspace.id === openWorkspaceId);
     const buttons = () => {
         return (
-            <div className="panel bgColor1">
-                <div className="button">
+            <div className="buttonsPanel">
+                <div className="button bgColor1">
                     generate{" "}
                     <FontAwesomeIcon icon="fa-solid fa-gears" className="smallIcon" />
                 </div>
-                {noData ? null : <button>see generated data</button>}
+                <div className="button bgColor1">
+                    upload file{" "}
+                    <FontAwesomeIcon
+                        icon="fa-solid fa-file-arrow-up"
+                        className="smallIcon"
+                    />
+                </div>
+                {noData ? null : (
+                    <div className="button bgColor1">see generated data</div>
+                )}
             </div>
         );
     };
 
     return (
         <div className="workspace bgColor2">
-            <div className="titlePanel bgColor1">Specify generation settings</div>
-            <div className="generationViewHorizontalFlex">
-                <div className="generationViewVerticalFlex">
+            <div className="titlePanel bgColor1">
+                {t("Specify generation settings")}
+            </div>
+            <div className="generationViewFirstFlex">
+                <div className="generationViewSecondFlex">
                     <div className="panel bgColor1">
-                        <div className="panelTitle"> Physical settings</div>
+                        <div className="panelTitle">{t("Physical settings")}</div>
                         <div className="formInput">
-                            <label>First level</label>
+                            <label>{t("First level")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>Last level</label>
+                            <label>{t("Last level")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>Mass first atom</label>
+                            <label>{t("First mass atom")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>Mass second atom</label>
+                            <label>{t("Second mass atom")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>epsilon</label>
+                            <label>{t("epsilon")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>h</label>
+                            <label>{t("h")}</label>
                             <input />
-                        </div>
-                        <div>
-                            upload file{" "}
-                            <FontAwesomeIcon
-                                icon="fa-solid fa-file-arrow-up"
-                                className="smallIcon"
-                            />
                         </div>
                     </div>
                     <div className="panel bgColor1">
-                        <div className="panelTitle"> Hardware settings</div>
+                        <div className="panelTitle">{t("Hardware settings")}</div>
                         <div className="formInput">
-                            <label>Batch size</label>
+                            <label>{t("Batch size")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>thread count</label>
+                            <label>{t("thread count")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>Floating point precision</label>
+                            <label>{t("Floating point precision")}</label>
                             <input />
                         </div>
-                        <div className="smallText">Estimated memory usage:</div>
-                        <div className="smallText">Current memory usage:</div>
+                        <div className="smallText">{t("Estimated memory usage:")}</div>
+                        <div className="smallText">{t("Current memory usage:")}</div>
                     </div>
                 </div>
                 <DevicePanel />
@@ -83,7 +88,8 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
 const mapStateToProps = (state) => {
     return {
         openWorkspaceId: state.workspacesReducer.openWorkspaceId,
-        workspaces: state.workspacesReducer.workspaces
+        workspaces: state.workspacesReducer.workspaces,
+        language: state.languagesReducer.language
     };
 };
 
