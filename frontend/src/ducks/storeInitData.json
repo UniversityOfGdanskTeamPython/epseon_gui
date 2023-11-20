@@ -1,6 +1,12 @@
 {
     "workspaces": [
         {
+            "id": 0,
+            "type": "data",
+            "data": {"data": "some data"},
+            "name": "data prev"
+        },
+        {
             "id": 1,
             "type": "data",
             "data": null,
