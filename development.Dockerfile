@@ -14,4 +14,3 @@ COPY . /code/
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 WORKDIR /code/backend
-ENTRYPOINT [ "/code/entrypoint.sh" ]

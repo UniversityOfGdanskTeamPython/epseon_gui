@@ -1,1 +1,1 @@
-"""PEC Framework test suite root."""
+"""Epseon GUI test suite root."""

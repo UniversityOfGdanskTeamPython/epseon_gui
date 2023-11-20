@@ -8,4 +8,3 @@ WORKDIR /code
 COPY ./dist/epseon_gui-0.1.0-py3-none-any.whl .
 RUN pip install ./epseon_gui-0.1.0-py3-none-any.whl
 RUN rm ./epseon_gui-0.1.0-py3-none-any.whl
-ENTRYPOINT [ "/code/entrpoint.sh" ]

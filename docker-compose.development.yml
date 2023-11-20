@@ -14,7 +14,10 @@ services:
             - db
     db:
         image: docker.io/postgres:16.0
+        hostname: db
         restart: always
+        ports:
+            - 5432:5432
         expose:
             - 5432
         environment:
