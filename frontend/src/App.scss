@@ -237,6 +237,12 @@ body {
         }
       }
 
+      .generationViewPlotWrapper {
+        display: grid;
+        gap: $paddingSize;
+
+      }
+
       .panel {
         border-radius: $borderRadius;
         padding: $paddingSize;
@@ -364,29 +370,12 @@ body {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: $paddingSize;
-  
-            // div {
-            //   flex-grow: 1;
-            // }
           }
         }
-        // .generationViewFirstFlex {
-        //   display: flex;
-        //   height: 100%;
-        //   gap: $paddingSize;
-  
-        //   div {
-        //     flex-grow: 2;
-        //   }
-  
-        //   .generationViewSecondFlex {
-        //     display: flex;
-        //     flex-direction: row;
-        //     gap: $paddingSize;
-        //     flex-grow: 1;
-        //     justify-content: space-evenly;
-        //   }
-        // }
+
+        .generationViewPlotFlex {
+          grid-template-columns: 2fr 1fr;
+        }
       }
     }
   }

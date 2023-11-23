@@ -52,11 +52,11 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>{t("epsilon")}</label>
+                            <label>{t("Distance to asymptote")}</label>
                             <input />
                         </div>
                         <div className="formInput">
-                            <label>{t("h")}</label>
+                            <label>{t("Integration step")}</label>
                             <input />
                         </div>
                     </div>
