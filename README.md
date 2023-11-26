@@ -51,11 +51,15 @@ To build Epseon GUI from source make sure you have `poetry` environment activate
 poetry shell
 ```
 
+```
+poetry install
+```
+
 With environment active it should be possible to build wheel and source distribution
 with:
 
 ```
-poetry build
+poe build
 ```
 
 ## Build documentation

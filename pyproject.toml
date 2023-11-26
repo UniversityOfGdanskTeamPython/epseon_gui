@@ -40,6 +40,12 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 packages = [{ include = "epseon_gui", from = "backend" }]
+include = [
+    { path = "backend/epseon_gui/static/**/*", format = [
+        "sdist",
+        "wheel",
+    ] },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8,<3.13"
@@ -92,34 +98,33 @@ install-hooks = [
     { cmd = "poetry run python -m scripts.install_hooks" },
     { cmd = "poetry run pre-commit install --install-hooks --overwrite" },
 ]
-# -------------
+# -------------------------------------------------------------------------------------
 # hook triggers
 run-code-quality-checks = [{ cmd = "pre-commit run --all-files -v" }]
 # -------------------------------------------------------------------------------------
-run-unit-tests = [
-    { cmd = "pytest --log-level=DEBUG -s -n logical" },
-]
+run-unit-tests = [{ cmd = "pytest --log-level=DEBUG -s -n logical" }]
 run-type-checks = [{ cmd = "mypy backend/epseon_gui test/ scripts/" }]
 #--------------------------------------------------------------------------------------
-#run or build the development enviroment in docker container
+# run or build the development enviroment in docker container
 run-docker-development = [
-    { cmd = "docker-compose -f docker-compose.development.yml up -d" }
+    { cmd = "docker-compose -f docker-compose.development.yml up -d" },
 ]
-#stop and remove the Docker container for the development environment
+# stop and remove the Docker container for the development environment
 delete-docker-development = [
-    { cmd = "docker-compose -f docker-compose.development.yml down"}
+    { cmd = "docker-compose -f docker-compose.development.yml down" },
 ]
-#-------------
-#run or build production enviroment in docker
+# -------------------------------------------------------------------------------------
+# run or build production enviroment in docker
 run-docker-production = [
-    { cmd = "docker-compose -f docker-compose.production.yml up -d"}
+    { cmd = "docker-compose -f docker-compose.production.yml up -d" },
 ]
-#stop and remove the Docker container for the production environment
+# stop and remove the Docker container for the production environment
 delete-docker-production = [
-    { cmd = "docker-compose -f docker-compose.production.yml down"}
-
+    { cmd = "docker-compose -f docker-compose.production.yml down" },
 ]
-#--------------------------------------------------------------------------------------
+# build
+build = [{ script = "build:build" }, { cmd = "poetry build" }]
+# -------------------------------------------------------------------------------------
 [tool.isort]
 profile = "black"
 src_paths = ["src", "test"]
