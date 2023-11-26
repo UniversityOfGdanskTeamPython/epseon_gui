@@ -1,0 +1,88 @@
+{
+    "description": "an web app application for finding potential energy curves",
+    "name": "pec-frontend",
+    "version": "0.1.0",
+    "keywords": [
+        "React",
+        "JavaScript",
+        "Python",
+        "FastAPI"
+    ],
+    "homepage": "https://github.com/UniversityOfGdanskTeamPython/pec_framework_web_app",
+    "bugs": {
+        "url": "https://github.com/UniversityOfGdanskTeamPython/pec_framework_web_app/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        "Krzysztof Wisniewski <argmaster.world@gmail.com>",
+        "Mateusz Szpyruk <mateusz.szpyruk@gmail.com>",
+        "Mateusz Zalewski <m.zalewski.924@studms.ug.edu.pl>",
+        "Paweł Olszewski <pawelolszewski.it@gmail.com>"
+    ],
+    "private": true,
+    "dependencies": {
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "axios": "^1.5.1",
+        "babel": "^6.23.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-scripts": "5.0.1",
+        "sass": "^1.69.5",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "es2021": true
+        },
+        "extends": [
+            "react-app",
+            "react-app/jest",
+            "eslint:recommended",
+            "plugin:react/recommended",
+            "plugin:prettier/recommended"
+        ],
+        "parserOptions": {
+            "ecmaVersion": "latest",
+            "sourceType": "module"
+        },
+        "plugins": [
+            "react"
+        ],
+        "rules": {
+            "react/react-in-jsx-scope": "off",
+            "react/prop-types": "off"
+        }
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "eslint": "8.52.0",
+        "eslint-config-prettier": "9.0.0",
+        "eslint-plugin-prettier": "5.0.1",
+        "eslint-plugin-react": "7.33.2",
+        "prettier": "^3.0.3"
+    },
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+}
