@@ -1,6 +1,6 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
-import t from "../../../ducks/languages/operations";
+import t from "../../../../ducks/languages/operations";
 import DevicePanel from "./DevicePanel";
 
 const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {

@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import GenerationView from "./GenerationView";
-import PreviewView from "./PreviewView";
+import GenerationView from "./generation/GenerationView";
+import PreviewView from "./preview/PreviewView";
 
 const DataWorkspace = ({openWorkspaceId, workspaces}, props) => {
     const workspace = workspaces.find((workspace) => workspace.id === openWorkspaceId);
