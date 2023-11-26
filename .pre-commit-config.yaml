@@ -38,6 +38,7 @@ repos:
       rev: "v8.52.0"
       hooks:
           - id: eslint
+            args: ["-c", "frontend/package.json"]
             additional_dependencies:
                 - eslint@8.52.0
                 - eslint-config-prettier@9.0.0
