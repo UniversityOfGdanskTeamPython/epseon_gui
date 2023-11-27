@@ -6,7 +6,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class GenerationData(BaseModel):
+class GenerationDataGeneral(BaseModel):
     firstLevel: int
     lastLevel: int
     firstAtomMass: float
@@ -16,17 +16,25 @@ class GenerationData(BaseModel):
     dispatchCount: int
     groupSize: int
     floatingPointPrecision: int
+
+
+class GenerationData(GenerationDataGeneral):
     deviceId: int
 
 
-class WorkspaceGeneration(BaseModel):
-    WorkspaceGeneration_type: str
-    WorkspaceGeneration_name: str
-    WorkspaceGeneration_workdata: Optional[GenerationData]
+class WorkspaceGeneral(BaseModel):
+    workspace_type: str
+    workspace_name: str
 
 
-class Workspace(BaseModel):
-    Workspace_id: str
-    Workspace_type: str
-    Workspace_name: str
-    Workspace_data: Optional[GenerationData]
+class WorkspaceGeneration(WorkspaceGeneral):
+    workspace_id: str
+    workspace_Generation_data: Optional[GenerationData]
+
+
+class Workspace(WorkspaceGeneral):
+    workspace_Generation_data: Optional[GenerationData]
+
+    class Config:
+        orm_mode = True
+        from_attributes = True
