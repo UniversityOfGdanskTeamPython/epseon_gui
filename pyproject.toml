@@ -3,10 +3,10 @@ name = "epseon_gui"
 version = "0.1.0"
 description = ""
 authors = [
+    "Paweł Olszewski <pawelolszewski.it@gmail.com>",
     "Krzysztof Wisniewski <argmaster.world@gmail.com>",
     "Mateusz Szpyruk <mateusz.szpyruk@gmail.com>",
     "Mateusz Zalewski <m.zalewski.924@studms.ug.edu.pl>",
-    "Paweł Olszewski <pawelolszewski.it@gmail.com>",
 ]
 license = "MIT"
 readme = "README.md"
@@ -40,6 +40,12 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 packages = [{ include = "epseon_gui", from = "backend" }]
+include = [
+    { path = "backend/epseon_gui/static/**/*", format = [
+        "sdist",
+        "wheel",
+    ] },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8,<3.13"
@@ -47,7 +53,7 @@ numpy = [
     { version = "^1.24.4", markers = "python_version >= '3.8' and python_version <= '3.11'" },
     { version = "^1.26.1", markers = "python_version >= '3.12' and python_version < '3.13'" },
 ]
-pydantic = "^2.4.2"
+pydantic = "^2.5.2"
 uvicorn = "^0.24.0.post1"
 sqlalchemy = "^2.0.23"
 fastapi = "^0.104.1"
@@ -55,7 +61,7 @@ psycopg2-binary = "^2.9.9"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.6.1"
-poethepoet = "^0.20.0"
+poethepoet = "^0.24.4"
 pytest = "^7.4.0"
 black = "^23.10.0"
 ruff = "^0.1.3"
@@ -63,7 +69,7 @@ jinja2 = "^3.1.2"
 pyyaml = "^6.0,>=6.0.1"
 ipykernel = "^6.25.0"
 pre-commit = "^3.5.0"
-pytest-xdist = "^3.3.1"
+pytest-xdist = "^3.5.0"
 pytest-cov = "^4.1.0"
 tzlocal = "^5.2"
 
@@ -72,12 +78,12 @@ optional = true
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.5.3"
-mkdocs-material = "^9.1.21"
+mkdocs-material = "^9.4.14"
 mkdocstrings = { extras = ["python"], version = "^0.22.0" }
 mkdocs-literate-nav = "^0.6.0"
 mkdocs-macros-plugin = "^1.0.2"
 mkdocs-gen-files = "^0.5.0"
-pygments = "^2.15.1"
+pygments = "^2.17.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -92,34 +98,33 @@ install-hooks = [
     { cmd = "poetry run python -m scripts.install_hooks" },
     { cmd = "poetry run pre-commit install --install-hooks --overwrite" },
 ]
-# -------------
+# -------------------------------------------------------------------------------------
 # hook triggers
 run-code-quality-checks = [{ cmd = "pre-commit run --all-files -v" }]
 # -------------------------------------------------------------------------------------
-run-unit-tests = [
-    { cmd = "pytest --log-level=DEBUG -s -n logical" },
-]
+run-unit-tests = [{ cmd = "pytest --log-level=DEBUG -s -n logical" }]
 run-type-checks = [{ cmd = "mypy backend/epseon_gui test/ scripts/" }]
 #--------------------------------------------------------------------------------------
-#run or build the development enviroment in docker container
+# run or build the development enviroment in docker container
 run-docker-development = [
-    { cmd = "docker-compose -f docker-compose.development.yml up -d" }
+    { cmd = "docker-compose -f docker-compose.development.yml up -d" },
 ]
-#stop and remove the Docker container for the development environment
+# stop and remove the Docker container for the development environment
 delete-docker-development = [
-    { cmd = "docker-compose -f docker-compose.development.yml down"}
+    { cmd = "docker-compose -f docker-compose.development.yml down" },
 ]
-#-------------
-#run or build production enviroment in docker
+# -------------------------------------------------------------------------------------
+# run or build production enviroment in docker
 run-docker-production = [
-    { cmd = "docker-compose -f docker-compose.production.yml up -d"}
+    { cmd = "docker-compose -f docker-compose.production.yml up -d" },
 ]
-#stop and remove the Docker container for the production environment
+# stop and remove the Docker container for the production environment
 delete-docker-production = [
-    { cmd = "docker-compose -f docker-compose.production.yml down"}
-
+    { cmd = "docker-compose -f docker-compose.production.yml down" },
 ]
-#--------------------------------------------------------------------------------------
+# build
+build = [{ script = "build:build" }, { cmd = "poetry build" }]
+# -------------------------------------------------------------------------------------
 [tool.isort]
 profile = "black"
 src_paths = ["src", "test"]

@@ -13,6 +13,7 @@ def insert_workspace_in_to_db(
     workspace: schemas.Workspace,
     workspace_id: str,
 ) -> None:
+    """Insert workspace into db."""
     new_workspace = models.Workspace(
         workspace_id=workspace_id,
         workspace_type=workspace.workspace_type,
@@ -20,7 +21,7 @@ def insert_workspace_in_to_db(
     )
     db.add(new_workspace)
     if workspace.workspace_Generation_data:
-        new_workspace_Generation_data = models.GenerationData(
+        new_workspace_generation_data = models.GenerationData(
             firstLevel=workspace.workspace_Generation_data.firstLevel,
             lastLevel=workspace.workspace_Generation_data.lastLevel,
             firstAtomMass=workspace.workspace_Generation_data.firstAtomMass,
@@ -33,23 +34,25 @@ def insert_workspace_in_to_db(
             deviceId=workspace.workspace_Generation_data.deviceId,
             workspace_id=workspace_id,
         )
-        db.add(new_workspace_Generation_data)
+        db.add(new_workspace_generation_data)
     db.commit()
-    db.delete
+    db.delete()
 
 
 def get_all_workspaces_from_db(db: Session) -> List[models.Workspace]:
+    """Get all workspaces."""
     workspaces = (
         db.query(models.Workspace)
         .options(joinedload(models.Workspace.workspace_Generation_data))
         .all()
     )
-    db.delete
+    db.delete()
 
     return workspaces
 
 
 def delete_workspace_from_db(db: Session, workspace_id: str) -> None:
+    """Delete workspace from db."""
     workspace_to_delete = (
         db.query(models.Workspace)
         .filter(models.Workspace.workspace_id == workspace_id)
@@ -58,24 +61,23 @@ def delete_workspace_from_db(db: Session, workspace_id: str) -> None:
     if workspace_to_delete:
         db.delete(workspace_to_delete)
 
-        workspace_Generation_data_to_delete = (
+        workspace_generation_data_to_delete = (
             db.query(models.GenerationData)
             .filter(models.GenerationData.workspace_id == workspace_id)
             .first()
         )
-        if workspace_Generation_data_to_delete:
-            db.delete(workspace_Generation_data_to_delete)
+        if workspace_generation_data_to_delete:
+            db.delete(workspace_generation_data_to_delete)
     db.commit()
 
 
 def get_workspace_from_db_by_id(db: Session, workspace_id: str) -> models.Workspace:
-    workspace = (
+    """Get workspace from db by id."""
+    return (
         db.query(models.Workspace)
         .filter(models.Workspace.workspace_id == workspace_id)
         .first()
     )
-
-    return workspace
 
 
 def add_generation_data_to_workspace_in_db(
@@ -83,7 +85,8 @@ def add_generation_data_to_workspace_in_db(
     workspace_id: str,
     generation_data: schemas.GenerationData,
 ) -> None:
-    workspace_Generation_data = models.GenerationData(
+    """Add generation data workspace to db."""
+    workspace_generation_data = models.GenerationData(
         firstLevel=generation_data.firstLevel,
         lastLevel=generation_data.lastLevel,
         firstAtomMass=generation_data.firstAtomMass,
@@ -97,12 +100,13 @@ def add_generation_data_to_workspace_in_db(
         workspace_id=workspace_id,
     )
 
-    db.add(workspace_Generation_data)
+    db.add(workspace_generation_data)
     db.commit()
-    db.delete
+    db.delete()
 
 
 def remove_all_workspaces_in_db(db: Session) -> None:
+    """Remove all workspaces from bd."""
     db.query(models.GenerationData).delete()
     db.query(models.Workspace).delete()
     db.commit()
@@ -113,6 +117,7 @@ def edit_workspace_in_db(
     workspace_id: str,
     workspace: schemas.WorkspaceGeneral,
 ) -> None:
+    """Edit workspace by id."""
     db.query(models.Workspace).filter(
         models.Workspace.workspace_id == workspace_id,
     ).update(dict(workspace.model_dump()))
@@ -124,6 +129,7 @@ def edit_generation_data_in_db(
     workspace_id: str,
     generation_data: schemas.GenerationDataGeneral,
 ) -> None:
+    """Edit generation data in db. Whatever that means."""
     db.query(models.GenerationData).filter(
         models.GenerationData.workspace_id == workspace_id,
     ).update(dict(generation_data.model_dump()))

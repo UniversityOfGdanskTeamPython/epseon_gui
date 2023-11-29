@@ -7,34 +7,46 @@ from pydantic import BaseModel
 
 
 class GenerationDataGeneral(BaseModel):
-    firstLevel: int
-    lastLevel: int
-    firstAtomMass: float
-    secondAtomMass: float
+    """Generation data schema."""
+
+    first_level: int
+    last_level: int
+    first_atom_mass: float
+    second_atom_mass: float
     epsilon: float
     h: float
-    dispatchCount: int
-    groupSize: int
-    floatingPointPrecision: int
+    dispatch_count: int
+    group_size: int
+    floating_point_precision: int
 
 
 class GenerationData(GenerationDataGeneral):
-    deviceId: int
+    """GenerationData."""
+
+    device_id: int
 
 
 class WorkspaceGeneral(BaseModel):
+    """WorkspaceGeneral."""
+
     workspace_type: str
     workspace_name: str
 
 
 class WorkspaceGeneration(WorkspaceGeneral):
+    """WorkspaceGeneration."""
+
     workspace_id: str
-    workspace_Generation_data: Optional[GenerationData]
+    workspace_generation_data: Optional[GenerationData]
 
 
 class Workspace(WorkspaceGeneral):
-    workspace_Generation_data: Optional[GenerationData]
+    """Workspace."""
+
+    workspace_generation_data: Optional[GenerationData]
 
     class Config:
+        """Config."""
+
         orm_mode = True
         from_attributes = True
