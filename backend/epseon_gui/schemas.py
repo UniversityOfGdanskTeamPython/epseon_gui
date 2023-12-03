@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 
 class GenerationDataGeneral(BaseModel):
-    """Generation data schema."""
+    """Generation data schema for sending data to db."""
 
     first_level: int
     last_level: int
@@ -21,20 +21,20 @@ class GenerationDataGeneral(BaseModel):
 
 
 class GenerationData(GenerationDataGeneral):
-    """GenerationData."""
+    """GenerationData schema for reading/updating data."""
 
     device_id: int
 
 
 class WorkspaceGeneral(BaseModel):
-    """WorkspaceGeneral."""
+    """WorkspaceGeneral for sending data to db.."""
 
     workspace_type: str
     workspace_name: str
 
 
 class WorkspaceGeneration(WorkspaceGeneral):
-    """WorkspaceGeneration."""
+    """WorkspaceGeneration for reading/updating data.."""
 
     workspace_id: str
     workspace_generation_data: Optional[GenerationData]
@@ -46,7 +46,9 @@ class Workspace(WorkspaceGeneral):
     workspace_generation_data: Optional[GenerationData]
 
     class Config:
-        """Config."""
+        """Configuration. 'orm_mode = True' will tell the Pydantic model to read the
+        data even if it is not a dict, but an ORM model.
+        """
 
         orm_mode = True
         from_attributes = True

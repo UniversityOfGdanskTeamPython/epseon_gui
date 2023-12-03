@@ -9,8 +9,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 load_dotenv()
+POSTGRES_USER = getenv("POSTGRES_USER", "postgres")
+POSTGRES_PASSWORD = getenv("POSTGRES_PASSWORD", "password")
+SQL_HOST = getenv("SQL_HOST", "default")
+POSTGRES_DB = getenv("POSTGRES_DB", "default")
 
-DATABASE_URL = f"postgresql://{getenv('POSTGRES_USER')}:{getenv('POSTGRES_PASSWORD')}@{getenv('SQL_HOST')}:5432/{getenv('POSTGRES_DB')}"
+DATABASE_URL = (
+    f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{SQL_HOST}:5432/{POSTGRES_DB}"
+)
 
 
 engine = create_engine(DATABASE_URL)

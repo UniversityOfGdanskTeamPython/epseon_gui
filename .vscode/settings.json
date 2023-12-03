@@ -94,7 +94,10 @@
         "Argmaster",
         "mateuszzalewski",
         "Szpy",
-        "epseon"
+        "epseon",
+        "dotenv",
+        "sessionmaker",
+        "Pydantic"
     ],
     "cSpell.customDictionaries": {
         "custom-dictionary-workspace": {

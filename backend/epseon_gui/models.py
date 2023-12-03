@@ -8,23 +8,23 @@ from epseon_gui.database import Base
 
 
 class Workspace(Base):
-    """Workspace."""
+    """Model for Workspace."""
 
-    __tablename__ = "Workspaces"
-    workspace_id = Column(String, primary_key=True, index=True)
+    __tablename__ = "workspaces"
+    workspace_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     workspace_type = Column(String)
     workspace_name = Column(String)
     workspace_generation_data = relationship(
-        "GenerationData",
+        "generation_data",
         back_populates="connected_workspace",
         uselist=False,
     )
 
 
 class GenerationData(Base):
-    """GenerationData."""
+    """Model for GenerationData."""
 
-    __tablename__ = "GenerationData"
+    __tablename__ = "generation_data"
     generation_data_id = Column(
         Integer,
         primary_key=True,
@@ -41,8 +41,8 @@ class GenerationData(Base):
     group_size = Column(Integer)
     floating_point_precision = Column(Integer)
     device_id = Column(Integer)
-    workspace_id = Column(String, ForeignKey("Workspaces.workspace_id"), nullable=False)
+    workspace_id = Column(String, ForeignKey("workspaces.workspace_id"), nullable=False)
     connected_workspace = relationship(
-        "Workspace",
-        back_populates="workspace_Generation_data",
+        "workspace",
+        back_populates="workspace_generation_data",
     )

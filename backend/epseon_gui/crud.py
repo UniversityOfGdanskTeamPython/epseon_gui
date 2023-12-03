@@ -8,14 +8,12 @@ from sqlalchemy.orm import Session, joinedload
 from epseon_gui import models, schemas
 
 
-def insert_workspace_in_to_db(
+def create_workspace(
     db: Session,
     workspace: schemas.Workspace,
-    workspace_id: str,
-) -> None:
+) -> models.Workspace:
     """Insert workspace into db."""
     new_workspace = models.Workspace(
-        workspace_id=workspace_id,
         workspace_type=workspace.workspace_type,
         workspace_name=workspace.workspace_name,
     )
@@ -32,26 +30,27 @@ def insert_workspace_in_to_db(
             groupSize=workspace.workspace_Generation_data.groupSize,
             floatingPointPrecision=workspace.workspace_Generation_data.floatingPointPrecision,
             deviceId=workspace.workspace_Generation_data.deviceId,
-            workspace_id=workspace_id,
+            workspace_id=new_workspace.workspace_id,
         )
         db.add(new_workspace_generation_data)
     db.commit()
-    db.delete()
+    db.refresh(new_workspace)
+    return new_workspace
 
 
-def get_all_workspaces_from_db(db: Session) -> List[models.Workspace]:
+def get_all_workspaces(db: Session) -> List[models.Workspace]:
     """Get all workspaces."""
     workspaces = (
         db.query(models.Workspace)
         .options(joinedload(models.Workspace.workspace_Generation_data))
         .all()
     )
-    db.delete()
+    db.refresh(workspaces)
 
     return workspaces
 
 
-def delete_workspace_from_db(db: Session, workspace_id: str) -> None:
+def delete_workspace(db: Session, workspace_id: str) -> None:
     """Delete workspace from db."""
     workspace_to_delete = (
         db.query(models.Workspace)
@@ -71,7 +70,7 @@ def delete_workspace_from_db(db: Session, workspace_id: str) -> None:
     db.commit()
 
 
-def get_workspace_from_db_by_id(db: Session, workspace_id: str) -> models.Workspace:
+def get_workspace_by_id(db: Session, workspace_id: str) -> models.Workspace:
     """Get workspace from db by id."""
     return (
         db.query(models.Workspace)
@@ -80,7 +79,7 @@ def get_workspace_from_db_by_id(db: Session, workspace_id: str) -> models.Worksp
     )
 
 
-def add_generation_data_to_workspace_in_db(
+def add_generation_data_to_workspace(
     db: Session,
     workspace_id: str,
     generation_data: schemas.GenerationData,
@@ -102,17 +101,17 @@ def add_generation_data_to_workspace_in_db(
 
     db.add(workspace_generation_data)
     db.commit()
-    db.delete()
+    db.refresh(workspace_generation_data)
 
 
-def remove_all_workspaces_in_db(db: Session) -> None:
+def remove_all_workspaces(db: Session) -> None:
     """Remove all workspaces from bd."""
     db.query(models.GenerationData).delete()
     db.query(models.Workspace).delete()
     db.commit()
 
 
-def edit_workspace_in_db(
+def edit_workspace(
     db: Session,
     workspace_id: str,
     workspace: schemas.WorkspaceGeneral,
@@ -124,12 +123,12 @@ def edit_workspace_in_db(
     db.commit()
 
 
-def edit_generation_data_in_db(
+def edit_generation_data(
     db: Session,
     workspace_id: str,
     generation_data: schemas.GenerationDataGeneral,
 ) -> None:
-    """Edit generation data in db. Whatever that means."""
+    """Edit generation data in db. Whatever that means (this shouldn't be possible)."""
     db.query(models.GenerationData).filter(
         models.GenerationData.workspace_id == workspace_id,
     ).update(dict(generation_data.model_dump()))
