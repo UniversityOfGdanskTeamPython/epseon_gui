@@ -13,8 +13,8 @@ class GenerationDataGeneral(BaseModel):
     last_level: int
     first_atom_mass: float
     second_atom_mass: float
-    epsilon: float
-    h: float
+    distance_to_asymptote: float
+    integration_step: float
     dispatch_count: int
     group_size: int
     floating_point_precision: int

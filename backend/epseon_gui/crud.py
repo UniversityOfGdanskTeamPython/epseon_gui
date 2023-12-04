@@ -18,18 +18,18 @@ def create_workspace(
         workspace_name=workspace.workspace_name,
     )
     db.add(new_workspace)
-    if workspace.workspace_Generation_data:
+    if workspace.workspace_generation_data:
         new_workspace_generation_data = models.GenerationData(
-            firstLevel=workspace.workspace_Generation_data.firstLevel,
-            lastLevel=workspace.workspace_Generation_data.lastLevel,
-            firstAtomMass=workspace.workspace_Generation_data.firstAtomMass,
-            secondAtomMass=workspace.workspace_Generation_data.secondAtomMass,
-            epsilon=workspace.workspace_Generation_data.epsilon,
-            h=workspace.workspace_Generation_data.h,
-            dispatchCount=workspace.workspace_Generation_data.dispatchCount,
-            groupSize=workspace.workspace_Generation_data.groupSize,
-            floatingPointPrecision=workspace.workspace_Generation_data.floatingPointPrecision,
-            deviceId=workspace.workspace_Generation_data.deviceId,
+            first_level=workspace.workspace_generation_data.first_level,
+            last_level=workspace.workspace_generation_data.last_level,
+            first_atom_mass=workspace.workspace_generation_data.first_atom_mass,
+            second_atom_mass=workspace.workspace_generation_data.second_atom_mass,
+            distance_to_asymptote=workspace.workspace_generation_data.distance_to_asymptote,
+            integration_step=workspace.workspace_generation_data.integration_step,
+            dispatch_count=workspace.workspace_generation_data.dispatch_count,
+            group_size=workspace.workspace_generation_data.group_size,
+            floating_point_precision=workspace.workspace_generation_data.floating_point_precision,
+            device_id=workspace.workspace_generation_data.device_id,
             workspace_id=new_workspace.workspace_id,
         )
         db.add(new_workspace_generation_data)
@@ -42,7 +42,7 @@ def get_all_workspaces(db: Session) -> List[models.Workspace]:
     """Get all workspaces."""
     workspaces = (
         db.query(models.Workspace)
-        .options(joinedload(models.Workspace.workspace_Generation_data))
+        .options(joinedload(models.Workspace.workspace_generation_data))
         .all()
     )
     db.refresh(workspaces)
@@ -86,16 +86,16 @@ def add_generation_data_to_workspace(
 ) -> None:
     """Add generation data workspace to db."""
     workspace_generation_data = models.GenerationData(
-        firstLevel=generation_data.firstLevel,
-        lastLevel=generation_data.lastLevel,
-        firstAtomMass=generation_data.firstAtomMass,
-        secondAtomMass=generation_data.secondAtomMass,
-        epsilon=generation_data.epsilon,
-        h=generation_data.h,
-        dispatchCount=generation_data.dispatchCount,
-        groupSize=generation_data.groupSize,
-        floatingPointPrecision=generation_data.floatingPointPrecision,
-        deviceId=generation_data.deviceId,
+        first_level=generation_data.first_level,
+        last_level=generation_data.last_level,
+        first_atom_mass=generation_data.first_atom_mass,
+        second_atom_mass=generation_data.second_atom_mass,
+        distance_to_asymptote=generation_data.distance_to_asymptote,
+        integration_step=generation_data.integration_step,
+        dispatch_count=generation_data.dispatch_count,
+        group_size=generation_data.group_size,
+        floating_point_precision=generation_data.floating_point_precision,
+        device_id=generation_data.device_id,
         workspace_id=workspace_id,
     )
 
