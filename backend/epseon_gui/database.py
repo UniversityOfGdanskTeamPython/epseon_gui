@@ -1,4 +1,4 @@
-"""module for handling database session."""
+"""Module for handling database session."""
 from __future__ import annotations
 
 from os import getenv

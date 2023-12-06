@@ -1,4 +1,4 @@
-"""module containing orm models."""
+"""Module containing orm models."""
 from __future__ import annotations
 
 from sqlalchemy import Column, Float, ForeignKey, Integer, String

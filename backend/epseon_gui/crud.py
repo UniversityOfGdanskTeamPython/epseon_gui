@@ -1,4 +1,4 @@
-"""module for CURD operations on Database."""
+"""Module for CURD operations on Database."""
 from __future__ import annotations
 
 from typing import List
