@@ -1,0 +1,101 @@
+{
+    "python.testing.pytestArgs": [
+        "--log-level=DEBUG",
+        "-s"
+    ],
+    "files.trimTrailingWhitespace": true,
+    "python.languageServer": "Pylance",
+    "python.analysis.diagnosticMode": "workspace",
+    "autoDocstring.docstringFormat": "numpy",
+    "autoDocstring.includeExtendedSummary": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.analysis.indexing": true,
+    "ruff.enable": true,
+    "ruff.fixAll": true,
+    "python.analysis.importFormat": "absolute",
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.hypothesis": true,
+        "**/.mypy_cache": true,
+        "**/.pytest_cache": true,
+        "**/.ruff_cache": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "breadcrumbs.showEvents": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.fixAll": [
+        "source.convertImportFormat"
+    ],
+    "explorer.copyRelativePathSeparator": "/",
+    "editor.rulers": [
+        88,
+        110
+    ],
+    "editor.formatOnSaveMode": "file",
+    "editor.formatOnSave": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.packageIndexDepths": [
+        {
+            "name": "matplotlib",
+            "depth": 10
+        },
+        {
+            "name": "scipy",
+            "depth": 10
+        },
+        {
+            "name": "fastapi",
+            "depth": 10
+        },
+        {
+            "name": "sqlalchemy",
+            "depth": 10
+        },
+        {
+            "name": "pytorch",
+            "depth": 10
+        },
+        {
+            "name": "typing_extensions",
+            "depth": 10
+        }
+    ],
+    "mypy-type-checker.importStrategy": "useBundled",
+    "black-formatter.importStrategy": "useBundled",
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "files.eol": "\n",
+    "cSpell.customDictionaries": {
+        "custom-dictionary-workspace": {
+            "name": "custom-dictionary-workspace",
+            "path": "./.vscode/dictionary.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    }
+}

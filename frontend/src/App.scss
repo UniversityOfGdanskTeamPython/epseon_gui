@@ -1,6 +1,6 @@
 @font-face {
-  font-family: Gabarito;
-  src: url(../public/Gabarito.ttf);
+    font-family: Gabarito;
+    src: url(../public/Gabarito.ttf);
 }
 
 $darkThemeMain1: #282c34;
@@ -25,358 +25,358 @@ $borderRadiusSmall: 15px;
 $iconSizeSmall: 20px;
 $iconSizeMedium: 25px;
 $iconSizeBig: 40px;
-$animationSpeed: .3s;
+$animationSpeed: 0.3s;
 $scrollbarSize: 5px;
 
-@mixin scrollbar($thumbColor, $trackColor: mix($thumbColor, white,  50%)) {
-  &::-webkit-scrollbar {
-    width:  $scrollbarSize;
-    height: $scrollbarSize;
-    border-radius: 10px;
-  }
+@mixin scrollbar($thumbColor, $trackColor: mix($thumbColor, white, 50%)) {
+    &::-webkit-scrollbar {
+        width: $scrollbarSize;
+        height: $scrollbarSize;
+        border-radius: 10px;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background: $thumbColor;
-    border-radius: $scrollbarSize;
-  }
+    &::-webkit-scrollbar-thumb {
+        background: $thumbColor;
+        border-radius: $scrollbarSize;
+    }
 
-  &::-webkit-scrollbar-track {
-    background: $trackColor;
-  }
+    &::-webkit-scrollbar-track {
+        background: $trackColor;
+    }
 }
 
-@mixin input($bgColor, $textColor, $bgColorFocus: mix($bgColor, black,  90%)) {
-  input {
-    background-color: $bgColor;
-    color: $textColor;
-    border-radius: $borderRadius;
-    border: none;
-    padding: $paddingSizeSmall;
-  }
+@mixin input($bgColor, $textColor, $bgColorFocus: mix($bgColor, black, 90%)) {
+    input {
+        background-color: $bgColor;
+        color: $textColor;
+        border-radius: $borderRadius;
+        border: none;
+        padding: $paddingSizeSmall;
+    }
 
-  input:focus {
-    outline: none;
-    background-color: $bgColorFocus
-  }
+    input:focus {
+        outline: none;
+        background-color: $bgColorFocus;
+    }
 }
 
-@mixin selectable($bgColor, $textColor, $bgColorFocus: mix($bgColor, black,  90%)) {
-  .selectable {
-    background-color: $bgColor;
-    color: $textColor;
-    border-radius: $borderRadius;
-    border: none;
-    padding: $paddingSizeSmall;
-  }
+@mixin selectable($bgColor, $textColor, $bgColorFocus: mix($bgColor, black, 90%)) {
+    .selectable {
+        background-color: $bgColor;
+        color: $textColor;
+        border-radius: $borderRadius;
+        border: none;
+        padding: $paddingSizeSmall;
+    }
 
-  .selected {
-    outline: none;
-    background-color: $bgColorFocus
-  }
+    .selected {
+        outline: none;
+        background-color: $bgColorFocus;
+    }
 }
 
 .darkTheme {
-  background-color: $darkThemeMain1;
-  color: $darkThemeText;
-
-  .bgColor1 {
     background-color: $darkThemeMain1;
-  }
+    color: $darkThemeText;
 
-  .bgColor2 {
-    background-color: $darkThemeMain2;
-  }
+    .bgColor1 {
+        background-color: $darkThemeMain1;
+    }
 
-  .bgColor3 {
-    background-color: $darkThemeMain3;
-  }
+    .bgColor2 {
+        background-color: $darkThemeMain2;
+    }
 
-  .smallIcon {
-    color: $darkThemeText
-  }
+    .bgColor3 {
+        background-color: $darkThemeMain3;
+    }
 
-  .mediumIcon {
-    color: $darkThemeText
-  }
+    .smallIcon {
+        color: $darkThemeText;
+    }
 
-  .bigIcon {
-    filter: invert(1);
-  }
+    .mediumIcon {
+        color: $darkThemeText;
+    }
 
-  .scroll {
-    @include scrollbar($darkThemeMain2, $darkThemeMain3);
-  }
+    .bigIcon {
+        filter: invert(1);
+    }
 
-  @include input($darkThemeMain2, $darkThemeText)
+    .scroll {
+        @include scrollbar($darkThemeMain2, $darkThemeMain3);
+    }
+
+    @include input($darkThemeMain2, $darkThemeText);
 }
 
 .lightTheme {
-  background-color: $lightThemeMain1;
-  color: $lightThemeText;
-
-  .bgColor1 {
     background-color: $lightThemeMain1;
-  }
+    color: $lightThemeText;
 
-  .bgColor2 {
-    background-color: $lightThemeMain2;
-  }
+    .bgColor1 {
+        background-color: $lightThemeMain1;
+    }
 
-  .bgColor3 {
-    background-color: $lightThemeMain3;
-  }
-  
-  .smallIcon {
-    color: $lightThemeText
-  }
+    .bgColor2 {
+        background-color: $lightThemeMain2;
+    }
 
-  .mediumIcon {
-    color: $lightThemeText
-  }
+    .bgColor3 {
+        background-color: $lightThemeMain3;
+    }
 
-  .bigIcon {
-    color: $lightThemeText
-  }
+    .smallIcon {
+        color: $lightThemeText;
+    }
 
-  .scroll {
-    @include scrollbar($lightThemeMain3, $lightThemeMain2);
-  }
+    .mediumIcon {
+        color: $lightThemeText;
+    }
 
-  @include input($lightThemeMain2, $lightThemeText)
+    .bigIcon {
+        color: $lightThemeText;
+    }
+
+    .scroll {
+        @include scrollbar($lightThemeMain3, $lightThemeMain2);
+    }
+
+    @include input($lightThemeMain2, $lightThemeText);
 }
 
 @mixin horizontalFlex {
-  display: flex;
-  align-items: center;
-  gap: $paddingSize;
+    display: flex;
+    align-items: center;
+    gap: $paddingSize;
 }
 
 body {
-  margin: 0;
-  font-family: Gabarito;
-  font-size: $fontSize;
-
-  input {
+    margin: 0;
     font-family: Gabarito;
-  }
+    font-size: $fontSize;
+
+    input {
+        font-family: Gabarito;
+    }
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  .smallText {
-    font-size: $fontSizeSmallText;
-  }
-
-  .topbar {
-    padding: $paddingSize;
-    display: flex;
-    justify-content: space-between;
-
-    .topbarContentWrapper {
-      @include horizontalFlex;
-    }
-  }
-
-  .workspaceWrapper {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 2 * $paddingSize - $iconSizeMedium);
-    width: 100vw;
+    height: 100vh;
 
-    .workspacesBar {
-      display: flex;
-      gap: $paddingSize;
-      padding: $paddingSize;
-      overflow-x: scroll;
-      white-space: nowrap;
-
-      .workspaceCard {
-        display: flex;
-        align-items: center;
-        gap: $paddingSize;
-        border-radius: $borderRadius;
-        padding: $paddingSize;
-        cursor: pointer;
-
-        .delete {
-          transition: $animationSpeed;
-        }
-
-        .delete:hover {
-          color: $deleteColor;
-        }
-      }
+    .smallText {
+        font-size: $fontSizeSmallText;
     }
 
-    .workspace {
-      margin: $paddingSize;
-      padding: $paddingSize;
-      border-radius: $borderRadius;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      gap: $paddingSize;
-
-      .generationViewFirstFlex {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: $paddingSize;
-        flex-grow: 1;
-
-        .generationViewSecondFlex {
-          display: flex;
-          flex-direction: column;
-          gap: $paddingSize;
-
-          div {
-            flex-grow: 1;
-          }
-        }
-      }
-
-      .generationViewPlotWrapper {
-        display: grid;
-        gap: $paddingSize;
-
-      }
-
-      .panel {
-        border-radius: $borderRadius;
+    .topbar {
         padding: $paddingSize;
+        display: flex;
+        justify-content: space-between;
+
+        .topbarContentWrapper {
+            @include horizontalFlex;
+        }
+    }
+
+    .workspaceWrapper {
         display: flex;
         flex-direction: column;
+        height: calc(100vh - 2 * $paddingSize - $iconSizeMedium);
+        width: 100vw;
 
-        .panelTitle {
-          font-weight: $boldFontWeight;
-          align-self: center;
-          margin-bottom: $paddingSize;
+        .workspacesBar {
+            display: flex;
+            gap: $paddingSize;
+            padding: $paddingSize;
+            overflow-x: scroll;
+            white-space: nowrap;
+
+            .workspaceCard {
+                display: flex;
+                align-items: center;
+                gap: $paddingSize;
+                border-radius: $borderRadius;
+                padding: $paddingSize;
+                cursor: pointer;
+
+                .delete {
+                    transition: $animationSpeed;
+                }
+
+                .delete:hover {
+                    color: $deleteColor;
+                }
+            }
         }
 
-        .formInput {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          padding: $paddingSizeSmall;
+        .workspace {
+            margin: $paddingSize;
+            padding: $paddingSize;
+            border-radius: $borderRadius;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: $paddingSize;
 
-          label {
-            font-size: $fontSizeSmallText;
-            position: relative;
-            text-wrap: nowrap;
-            width: 0;
-            height: 0;
-            top: calc($paddingSizeSmall * -2);
-            left: calc($paddingSizeSmall * 2);
-          }
-          input {
-            width: 100%;
-            height: calc(1em + 2 * $paddingSizeSmall);
-            padding-left: calc(2 * $paddingSizeSmall);
-          }
+            .generationViewFirstFlex {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: $paddingSize;
+                flex-grow: 1;
+
+                .generationViewSecondFlex {
+                    display: flex;
+                    flex-direction: column;
+                    gap: $paddingSize;
+
+                    div {
+                        flex-grow: 1;
+                    }
+                }
+            }
+
+            .generationViewPlotWrapper {
+                display: grid;
+                gap: $paddingSize;
+            }
+
+            .panel {
+                border-radius: $borderRadius;
+                padding: $paddingSize;
+                display: flex;
+                flex-direction: column;
+
+                .panelTitle {
+                    font-weight: $boldFontWeight;
+                    align-self: center;
+                    margin-bottom: $paddingSize;
+                }
+
+                .formInput {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    padding: $paddingSizeSmall;
+
+                    label {
+                        font-size: $fontSizeSmallText;
+                        position: relative;
+                        text-wrap: nowrap;
+                        width: 0;
+                        height: 0;
+                        top: calc($paddingSizeSmall * -2);
+                        left: calc($paddingSizeSmall * 2);
+                    }
+
+                    input {
+                        width: 100%;
+                        height: calc(1em + 2 * $paddingSizeSmall);
+                        padding-left: calc(2 * $paddingSizeSmall);
+                    }
+                }
+
+                .deviceCardWrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: $paddingSize;
+
+                    .deviceCard {
+                        padding: $paddingSizeSmall;
+                        border-radius: $borderRadiusSmall;
+                    }
+                }
+
+                .button {
+                    border-radius: $borderRadius;
+                    padding: $paddingSizeSmall;
+                    align-self: center;
+                    align-items: center;
+                }
+            }
+
+            .titlePanel {
+                border-radius: $borderRadius;
+                padding: $paddingSize;
+                display: flex;
+                font-weight: $boldFontWeight;
+                justify-content: center;
+            }
+
+            .buttonsPanel {
+                display: flex;
+                gap: $paddingSize;
+                justify-content: center;
+
+                .button {
+                    border-radius: $borderRadius;
+                    padding: $paddingSize;
+                    align-self: center;
+                    align-items: center;
+                    text-align: center;
+                    cursor: pointer;
+                    flex: 1;
+                }
+
+                .button:hover {
+                    .smallIcon {
+                        transform: scale(1.25);
+                    }
+                }
+            }
         }
-
-        .deviceCardWrapper {
-          display: flex;
-          flex-direction: column;
-          gap: $paddingSize;
-
-          .deviceCard {
-            padding: $paddingSizeSmall;
-            border-radius: $borderRadiusSmall;
-          }
-        }
-
-        .button {
-          border-radius: $borderRadius;
-          padding: $paddingSizeSmall;
-          align-self: center;
-          align-items: center;
-        }
-      }
-
-      .titlePanel {
-        border-radius: $borderRadius;
-        padding: $paddingSize;
-        display: flex;
-        font-weight: $boldFontWeight;
-        justify-content: center;
-      }
-
-      .buttonsPanel {
-        display: flex;
-        gap: $paddingSize;
-        justify-content: center;
-
-        .button {
-          border-radius: $borderRadius;
-          padding: $paddingSize;
-          align-self: center;
-          align-items: center;
-          text-align: center;
-          cursor: pointer;
-          flex: 1;
-        }
-
-        .button:hover {
-          .smallIcon {
-            transform: scale(1.25);
-          }
-        }
-      }
     }
-  }
 
-  .smallIcon {
-    height: $iconSizeSmall;
-    width: $iconSizeSmall;
-    cursor: pointer;
-    transition: transform $animationSpeed;
-  }
+    .smallIcon {
+        height: $iconSizeSmall;
+        width: $iconSizeSmall;
+        cursor: pointer;
+        transition: transform $animationSpeed;
+    }
 
-  .smallIcon:hover {
-    transform: scale(1.25);
-  }
+    .smallIcon:hover {
+        transform: scale(1.25);
+    }
 
-  .mediumIcon {
-    height: $iconSizeMedium;
-    width: $iconSizeMedium;
-    cursor: pointer;
-    transition: transform $animationSpeed;
-  }
+    .mediumIcon {
+        height: $iconSizeMedium;
+        width: $iconSizeMedium;
+        cursor: pointer;
+        transition: transform $animationSpeed;
+    }
 
-  .mediumIcon:hover {
-    transform: scale(1.25);
-  }
+    .mediumIcon:hover {
+        transform: scale(1.25);
+    }
 
-  .bigIcon {
-    height: $iconSizeBig;
-    width: $iconSizeBig;
-  }
+    .bigIcon {
+        height: $iconSizeBig;
+        width: $iconSizeBig;
+    }
 }
 
 @media screen and (min-width: 1000px) {
-  .app {
-    .workspaceWrapper {
-      .workspace {
-        .generationViewFirstFlex {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: $paddingSize;
-          flex-grow: 1;
-  
-          .generationViewSecondFlex {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: $paddingSize;
-          }
-        }
+    .app {
+        .workspaceWrapper {
+            .workspace {
+                .generationViewFirstFlex {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: $paddingSize;
+                    flex-grow: 1;
 
-        .generationViewPlotFlex {
-          grid-template-columns: 2fr 1fr;
+                    .generationViewSecondFlex {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: $paddingSize;
+                    }
+                }
+
+                .generationViewPlotFlex {
+                    grid-template-columns: 2fr 1fr;
+                }
+            }
         }
-      }
     }
-  }
 }

@@ -1,9 +1,9 @@
 {
-    "tabWidth": 4,
     "useTabs": false,
     "endOfLine": "lf",
     "printWidth": 88,
     "trailingComma": "none",
     "proseWrap": "always",
-    "bracketSpacing": false
+    "bracketSpacing": false,
+    "tabWidth": 4
 }
