@@ -90,15 +90,6 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "files.eol": "\n",
-    "cSpell.words": [
-        "Argmaster",
-        "mateuszzalewski",
-        "Szpy",
-        "epseon",
-        "dotenv",
-        "sessionmaker",
-        "Pydantic"
-    ],
     "cSpell.customDictionaries": {
         "custom-dictionary-workspace": {
             "name": "custom-dictionary-workspace",

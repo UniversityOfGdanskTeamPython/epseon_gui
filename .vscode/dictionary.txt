@@ -1,0 +1,9 @@
+fastapi
+Argmaster
+Szpyruk
+mateuszzalewski
+Szpy
+epseon
+dotenv
+sessionmaker
+Pydantic
