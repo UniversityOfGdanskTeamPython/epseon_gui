@@ -1,4 +1,8 @@
-"""Module for CURD operations on Database."""
+"""Module for CURD operations on Database.
+For more information on working with SQLAlchemy sessions (database operations),
+please check official documentation:
+https://docs.sqlalchemy.org/en/20/orm/session_basics.html.
+"""
 from __future__ import annotations
 
 from typing import List
