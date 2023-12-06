@@ -60,7 +60,7 @@ fastapi = "^0.104.1"
 psycopg2-binary = "^2.9.9"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.6.1"
+mypy = "^1.7.1"
 poethepoet = "^0.24.4"
 pytest = "^7.4.0"
 black = "^23.10.0"
