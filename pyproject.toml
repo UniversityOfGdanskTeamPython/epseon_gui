@@ -3,10 +3,10 @@ name = "epseon_gui"
 version = "0.1.0"
 description = ""
 authors = [
+    "Paweł Olszewski <pawelolszewski.it@gmail.com>",
     "Krzysztof Wisniewski <argmaster.world@gmail.com>",
     "Mateusz Szpyruk <mateusz.szpyruk@gmail.com>",
     "Mateusz Zalewski <m.zalewski.924@studms.ug.edu.pl>",
-    "Paweł Olszewski <pawelolszewski.it@gmail.com>",
 ]
 license = "MIT"
 readme = "README.md"

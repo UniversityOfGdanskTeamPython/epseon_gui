@@ -1,5 +1,8 @@
 {
-    "python.testing.pytestArgs": ["--log-level=DEBUG", "-s"],
+    "python.testing.pytestArgs": [
+        "--log-level=DEBUG",
+        "-s"
+    ],
     "files.trimTrailingWhitespace": true,
     "python.languageServer": "Pylance",
     "python.analysis.diagnosticMode": "workspace",
@@ -45,9 +48,14 @@
         "source.fixAll": true
     },
     "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.fixAll": ["source.convertImportFormat"],
+    "python.analysis.fixAll": [
+        "source.convertImportFormat"
+    ],
     "explorer.copyRelativePathSeparator": "/",
-    "editor.rulers": [88, 110],
+    "editor.rulers": [
+        88,
+        110
+    ],
     "editor.formatOnSaveMode": "file",
     "editor.formatOnSave": true,
     "python.analysis.autoImportCompletions": true,
@@ -82,7 +90,6 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "files.eol": "\n",
-    "cSpell.words": ["Argmaster", "mateuszzalewski", "Szpy"],
     "cSpell.customDictionaries": {
         "custom-dictionary-workspace": {
             "name": "custom-dictionary-workspace",

@@ -779,6 +779,7 @@ rust-project.json
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
+!.vscode/dictionary.txt
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json

@@ -1,0 +1,12 @@
+Argmaster
+autoflush
+dotenv
+epseon
+fastapi
+joinedload
+mateuszzalewski
+Pydantic
+sessionmaker
+sqlalchemy
+Szpy
+Szpyruk
