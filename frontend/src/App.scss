@@ -277,6 +277,27 @@ body {
                     }
                 }
 
+                .formRadioInput {
+                    font-size: $fontSizeSmallText;
+
+                    legend {
+                        position: relative;
+                        left: calc($paddingSizeSmall * 2);
+                    }
+
+                    .radioButtons {
+                        display: flex;
+                        justify-content: space-evenly;
+                        padding-top: $paddingSizeSmall;
+
+                        .radioButtonWrapper {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                    }
+                }
+
                 .deviceCardWrapper {
                     display: flex;
                     flex-direction: column;

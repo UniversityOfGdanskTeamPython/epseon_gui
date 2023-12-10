@@ -3,6 +3,7 @@ autoflush
 dotenv
 epseon
 fastapi
+fontawesome
 joinedload
 mateuszzalewski
 Pydantic
