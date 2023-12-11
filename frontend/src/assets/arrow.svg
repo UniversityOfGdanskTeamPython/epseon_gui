@@ -1,0 +1,13 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 20" width="21" height="20">
+	<title>arrow-svg</title>
+	<style>
+		.s0 { fill: #000000 }
+	</style>
+	<g id="Page-1">
+		<g id="Dribbble-Light-Preview">
+			<g id="icons">
+				<path id="arrow_right-[#336]" fill-rule="evenodd" class="s0" d="m5.4 18.7c0.4 0.4 1 0.4 1.4 0l8.6-7.4c0.8-0.7 0.8-1.8 0-2.5l-8.6-7.5c-0.4-0.4-1.1-0.4-1.5 0-0.4 0.3-0.4 0.9 0 1.2l7.9 6.9c0.4 0.3 0.4 0.9 0 1.3l-7.8 6.8c-0.4 0.3-0.4 0.9 0 1.2z"/>
+			</g>
+		</g>
+	</g>
+</svg>

@@ -1,6 +1,6 @@
 {
     "description": "an web app application for finding potential energy curves",
-    "name": "pec-frontend",
+    "name": "epseon",
     "version": "0.1.0",
     "keywords": [
         "React",
@@ -9,9 +9,7 @@
         "FastAPI"
     ],
     "homepage": "https://github.com/UniversityOfGdanskTeamPython/pec_framework_web_app",
-    "bugs": {
-        "url": "https://github.com/UniversityOfGdanskTeamPython/pec_framework_web_app/issues"
-    },
+    "bugs": {},
     "license": "MIT",
     "authors": [
         "Krzysztof Wisniewski <argmaster.world@gmail.com>",
@@ -21,14 +19,26 @@
     ],
     "private": true,
     "dependencies": {
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@fortawesome/fontawesome-svg-core": "^6.4.2",
+        "@fortawesome/free-brands-svg-icons": "^6.4.2",
+        "@fortawesome/free-regular-svg-icons": "^6.4.2",
+        "@fortawesome/free-solid-svg-icons": "^6.4.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
+        "@mui/material": "^5.14.18",
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-        "axios": "^1.6.0",
+        "axios": "^1.5.1",
         "babel": "^6.23.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-redux": "^8.1.3",
         "react-scripts": "5.0.1",
+        "recharts": "^2.10.1",
+        "redux": "^4.2.1",
+        "redux-thunk": "^2.4.2",
         "sass": "^1.69.5",
         "web-vitals": "^2.1.4"
     },
@@ -60,11 +70,6 @@
         "rules": {
             "react/react-in-jsx-scope": "off",
             "react/prop-types": "off"
-        },
-        "settings": {
-            "react": {
-                "version": "^18.2.0"
-            }
         }
     },
     "browserslist": {
@@ -81,11 +86,12 @@
     },
     "devDependencies": {
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "eslint": "8.52.0",
-        "eslint-config-prettier": "9.0.0",
-        "eslint-plugin-prettier": "5.0.1",
-        "eslint-plugin-react": "7.33.2",
-        "prettier": "^3.0.3"
+        "eslint": "^8.52.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.1",
+        "eslint-plugin-react": "^7.33.2",
+        "prettier": "^3.0.3",
+        "redux-logger": "^3.0.6"
     },
     "lint": "eslint .",
     "lint:fix": "eslint --fix",

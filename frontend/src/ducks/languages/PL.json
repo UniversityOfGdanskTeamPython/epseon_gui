@@ -1,0 +1,23 @@
+{
+    "hide": "ukryj",
+    "options": "opcje",
+    "Data preview": "Podgląd danych",
+    "Data generation": "Generacja danych",
+    "Specify generation settings": "Wprowadź ustawienia generacji",
+    "Physical settings": "Ustawienia fizyczne",
+    "First level": "Pierwszy poziom",
+    "Last level": "Ostatni poziom",
+    "First mass atom": "Masa pierwszego atomu",
+    "Second mass atom": "Masa drugiego atomu",
+    "Distance to asymptote": "Dystans do asymptoty",
+    "Integration step": "Krok całkowania",
+    "Hardware settings": "Ustawienia sprzętowe",
+    "Dispatch count": "Liczba wykonań",
+    "Group size": "Rozmiar grupy",
+    "Floating point precision": "Ilość miejsc po przecinku",
+    "Estimated memory usage:": "Szacowane zużycie pamięci:",
+    "Current memory usage:": "Obecne zużycie pamięci:",
+    "Select device": "Wybierz urządzenie",
+    "generate": "generuj",
+    "upload file": "wczytaj plik"
+}
