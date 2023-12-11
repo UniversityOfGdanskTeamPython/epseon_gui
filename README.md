@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="400" src="https://github.com/UniversityOfGdanskTeamPython/epseon_backend/assets/56170852/094eb29d-ad4d-420c-bf20-60eae2cadb0b" alt="" />
+</p>
+
 <h1 align="center"> Epseon GUI </h1>
 
 ## Installation
