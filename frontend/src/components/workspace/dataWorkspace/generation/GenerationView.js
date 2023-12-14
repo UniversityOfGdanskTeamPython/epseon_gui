@@ -9,14 +9,19 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
     const [groupSize, setGroupSize] = useState("");
     const [floatingPointPrecision, setFloatingPointPrecision] = useState(32);
 
+    const [potentialWellWidth, setPotentialWellWidth] = useState("");
+    const [dissociationEnergy, setDissociationEnergy] = useState("");
+    const [equilibriumBondDistance, setEquilibriumBondDistance] = useState("");
+    const [maxR, setMaxR] = useState("");
+    const [minR, setMinR] = useState("");
+    const [pointsCount, setPointsCount] = useState("");
+    const [dataStep, setDataStep] = useState("");
+    const [dataCount, setDataCount] = useState("");
+
     // const workspace = workspaces.find((workspace) => workspace.id === openWorkspaceId);
     const buttons = () => {
         return (
             <div className="buttonsPanel">
-                <div className="button bgColor1">
-                    generate{" "}
-                    <FontAwesomeIcon icon="fa-solid fa-gears" className="smallIcon" />
-                </div>
                 <div className="button bgColor1">
                     upload file{" "}
                     <FontAwesomeIcon
@@ -24,11 +29,80 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                         className="smallIcon"
                     />
                 </div>
+                <div
+                    className="button bgColor1"
+                    onClick={() => {
+                        generateData();
+                    }}
+                >
+                    generate{" "}
+                    <FontAwesomeIcon icon="fa-solid fa-gears" className="smallIcon" />
+                </div>
                 {noData ? null : (
                     <div className="button bgColor1">see generated data</div>
                 )}
             </div>
         );
+    };
+
+    const generateData = () => {
+        const morseCurveTensor = generateMorseCurveTensor();
+        console.log(morseCurveTensor);
+    };
+
+    const generateMorseCurveTensor = () => {
+        const potentialWellWidthDataList = generateDataSteps(
+            parseFloat(potentialWellWidth),
+            dataStep,
+            dataCount
+        );
+        const dissociationEnergyDataList = generateDataSteps(
+            parseFloat(dissociationEnergy),
+            dataStep,
+            dataCount
+        );
+        const equilibriumBondDistanceDataList = generateDataSteps(
+            parseFloat(equilibriumBondDistance),
+            dataStep,
+            dataCount
+        );
+        const tensor = [];
+        for (let x = 0; x < dataCount; x++) {
+            const rowX = [];
+            for (let y = 0; y < dataCount; y++) {
+                const rowY = [];
+                for (let z = 0; z < dataCount; z++) {
+                    const dataPoint = [
+                        potentialWellWidthDataList[x],
+                        dissociationEnergyDataList[y],
+                        equilibriumBondDistanceDataList[z]
+                    ];
+                    rowY.push(dataPoint);
+                }
+                rowX.push(rowY);
+            }
+            tensor.push(rowX);
+        }
+        return tensor;
+    };
+
+    const generateDataSteps = (initialValue, stepValue, stepsCount) => {
+        const dataList = [];
+        const stepsCountHalf = Math.floor(stepsCount / 2);
+        const isStepsCountOdd = stepsCount % 2 === 1;
+        for (let i = 0; i < stepsCountHalf; i++) {
+            const stepsAmount = stepsCountHalf - i;
+            const step = initialValue - stepValue * stepsAmount;
+            dataList.push(step);
+        }
+        if (isStepsCountOdd) {
+            dataList.push(initialValue);
+        }
+        for (let i = 1; i <= stepsCountHalf; i++) {
+            const step = initialValue + stepValue * i;
+            dataList.push(step);
+        }
+        return dataList;
     };
 
     const estimatedMemoryUsage = () => {
@@ -91,8 +165,8 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                         <div className="formInput">
                             <label>{t("Dispatch count")}</label>
                             <input
-                                value={dispatchCount}
                                 type="number"
+                                value={dispatchCount}
                                 onChange={(event) => {
                                     setDispatchCount(event.target.value);
                                 }}
@@ -101,8 +175,8 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                         <div className="formInput">
                             <label>{t("Group size")}</label>
                             <input
-                                value={groupSize}
                                 type="number"
+                                value={groupSize}
                                 onChange={(event) => {
                                     setGroupSize(event.target.value);
                                 }}
@@ -138,7 +212,92 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                         <div className="smallText">{t("Current memory usage:")}</div>
                     </div>
                 </div>
-                <DevicePanel />
+                <div className="generationViewSecondFlex">
+                    <DevicePanel />
+                    <div className="panel bgColor1">
+                        <div className="panelTitle">{t("Morse curve parameters")}</div>
+                        <div className="formInput">
+                            <label>{t("Potential well width")}</label>
+                            <input
+                                type="number"
+                                value={potentialWellWidth}
+                                onChange={(event) => {
+                                    setPotentialWellWidth(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="formInput">
+                            <label>{t("Dissociation energy")}</label>
+                            <input
+                                type="number"
+                                value={dissociationEnergy}
+                                onChange={(event) => {
+                                    setDissociationEnergy(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="formInput">
+                            <label>{t("Equilibrium bond distance")}</label>
+                            <input
+                                type="number"
+                                value={equilibriumBondDistance}
+                                onChange={(event) => {
+                                    setEquilibriumBondDistance(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="formInput">
+                            <label>{t("Max r")}</label>
+                            <input
+                                type="number"
+                                value={maxR}
+                                onChange={(event) => {
+                                    setMaxR(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="formInput">
+                            <label>{t("Min r")}</label>
+                            <input
+                                type="number"
+                                value={minR}
+                                onChange={(event) => {
+                                    setMinR(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="formInput">
+                            <label>{t("Points count")}</label>
+                            <input
+                                type="number"
+                                value={pointsCount}
+                                onChange={(event) => {
+                                    setPointsCount(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="formInput">
+                            <label>{t("Data step")}</label>
+                            <input
+                                type="number"
+                                value={dataStep}
+                                onChange={(event) => {
+                                    setDataStep(event.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="formInput">
+                            <label>{t("Data count")}</label>
+                            <input
+                                type="number"
+                                value={dataCount}
+                                onChange={(event) => {
+                                    setDataCount(event.target.value);
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
             {buttons()}
         </div>
