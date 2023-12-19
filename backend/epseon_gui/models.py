@@ -41,7 +41,11 @@ class GenerationData(Base):
     group_size = Column(Integer)
     floating_point_precision = Column(Integer)
     device_id = Column(Integer)
-    workspace_id = Column(String, ForeignKey("workspaces.workspace_id"), nullable=False)
+    workspace_id = Column(
+        Integer,
+        ForeignKey("workspaces.workspace_id"),
+        nullable=False,
+    )
     connected_workspace = relationship(
         "workspace",
         back_populates="workspace_generation_data",

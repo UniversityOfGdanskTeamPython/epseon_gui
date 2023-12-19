@@ -36,7 +36,7 @@ class WorkspaceGeneral(BaseModel):
 class WorkspaceGeneration(WorkspaceGeneral):
     """WorkspaceGeneration for reading/updating data.."""
 
-    workspace_id: str
+    workspace_id: int
     workspace_generation_data: Optional[GenerationData]
 
 
@@ -46,9 +46,8 @@ class Workspace(WorkspaceGeneral):
     workspace_generation_data: Optional[GenerationData]
 
     class Config:
-        """Configuration. 'orm_mode = True' will tell the Pydantic model to read the
-        data even if it is not a dict, but an ORM model.
+        """Configuration. 'from_attributes = True' will tell the Pydantic model to read
+        the data even if it is not a dict, but an ORM model.
         """
 
-        orm_mode = True
         from_attributes = True
