@@ -15,9 +15,8 @@ class Workspace(Base):
     workspace_type = Column(String)
     workspace_name = Column(String)
     workspace_generation_data = relationship(
-        "generation_data",
+        "GenerationData",
         back_populates="connected_workspace",
-        uselist=False,
     )
 
 
@@ -47,6 +46,6 @@ class GenerationData(Base):
         nullable=False,
     )
     connected_workspace = relationship(
-        "workspace",
+        "Workspace",
         back_populates="workspace_generation_data",
     )

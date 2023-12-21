@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import TYPE_CHECKING, Dict, List
 
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 
 from epseon_gui import crud, models, schemas
@@ -34,16 +34,22 @@ async def delete_all_workspaces_from_db(db: Session = Depends(get_db)) -> None:
     crud.remove_all_workspaces(db)
 
 
-@app.get("/workspace/{workspace_id}", response_model=schemas.WorkspaceGeneration)
+@app.get("/workspaces/{workspace_id}", response_model=schemas.WorkspaceGeneration)
 async def get_workspace_by_id(
     workspace_id: str,
     db: Session = Depends(get_db),
 ) -> models.Workspace:
     """Get workspace by id."""
-    return crud.get_workspace_by_id(db, workspace_id)
+    workspace = crud.get_workspace_by_id(db, workspace_id)
+    if workspace is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Workspace with specified id doesn't exists",
+        )
+    return workspace
 
 
-@app.post("/workspace/")
+@app.post("/workspaces/")
 async def create_workspace_in_db(
     workspace: schemas.Workspace,
     db: Session = Depends(get_db),
@@ -52,7 +58,7 @@ async def create_workspace_in_db(
     return crud.create_workspace(db, workspace)
 
 
-@app.delete("/workspace/{workspace_id}")
+@app.delete("/workspaces/{workspace_id}")
 async def delete_workspace_by_id(
     workspace_id: str,
     db: Session = Depends(get_db),
@@ -61,7 +67,7 @@ async def delete_workspace_by_id(
     crud.delete_workspace(db, workspace_id)
 
 
-@app.put("/workspace/{workspace_id}")
+@app.put("/workspaces/{workspace_id}")
 async def update_workspace_in_db_by_id(
     workspace_id: str,
     workspace: schemas.WorkspaceGeneral,
@@ -71,7 +77,7 @@ async def update_workspace_in_db_by_id(
     crud.edit_workspace(db, workspace_id, workspace)
 
 
-@app.put("/workspace/{workspace_id}")
+@app.put("/workspaces/{workspace_id}/generationData/")
 async def update_generation_data_in_db_by_id(
     workspace_id: str,
     generation_data: schemas.GenerationDataGeneral,

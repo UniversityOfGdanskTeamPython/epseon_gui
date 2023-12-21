@@ -44,14 +44,11 @@ def create_workspace(
 
 def get_all_workspaces(db: Session) -> List[models.Workspace]:
     """Get all workspaces."""
-    workspaces = (
+    return (
         db.query(models.Workspace)
         .options(joinedload(models.Workspace.workspace_generation_data))
         .all()
     )
-    db.refresh(workspaces)
-
-    return workspaces
 
 
 def delete_workspace(db: Session, workspace_id: str) -> None:
