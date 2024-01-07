@@ -14,6 +14,7 @@ class Workspace(Base):
     workspace_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     workspace_type = Column(String)
     workspace_name = Column(String)
+
     workspace_generation_data = relationship(
         "GenerationData",
         back_populates="connected_workspace",
@@ -39,12 +40,12 @@ class GenerationData(Base):
     dispatch_count = Column(Integer)
     group_size = Column(Integer)
     floating_point_precision = Column(Integer)
-    device_id = Column(Integer)
     workspace_id = Column(
         Integer,
         ForeignKey("workspaces.workspace_id"),
         nullable=False,
     )
+
     connected_workspace = relationship(
         "Workspace",
         back_populates="workspace_generation_data",
