@@ -1,21 +1,28 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
-import {setCurrentWorkspace, deleteWorkspace} from "../../ducks/workspaces/actions";
+import {
+    setCurrentWorkspace,
+    addOneWorkspace,
+    deleteWorkspace
+} from "../../ducks/workspaces/actions";
 import {useRef} from "react";
 
-const WorkspacesBar = ({workspaces, setCurrentWorkspace, deleteWorkspace}, props) => {
+const WorkspacesBar = (
+    {workspaces, setCurrentWorkspace, addOneWorkspace, deleteWorkspace},
+    props
+) => {
     const barRef = useRef(null);
 
     const workspaceCard = (workspace) => {
         return (
             <div
-                key={workspace.id}
+                key={workspace.workspace_id}
                 className="workspaceCard bgColor2"
                 onClick={() => {
                     setCurrentWorkspace(workspace.id);
                 }}
             >
-                <div>{workspace.name}</div>
+                <div>{workspace.workspace_name}</div>
                 <FontAwesomeIcon
                     icon="fa-solid fa-xmark"
                     className="smallIcon delete"
@@ -28,17 +35,34 @@ const WorkspacesBar = ({workspaces, setCurrentWorkspace, deleteWorkspace}, props
         );
     };
 
+    const addWorkspaceButton = () => {
+        return (
+            <div
+                className="bgColor2"
+                onClick={() => {
+                    addOneWorkspace("new workspace");
+                }}
+            >
+                <FontAwesomeIcon icon="fa-solid fa-plus" className="smallIcon" />
+                new workspace
+            </div>
+        );
+    };
+
     return (
-        <div
-            className="workspacesBar scroll"
-            onWheel={(event) => {
-                barRef.current.scrollLeft += event.deltaY;
-            }}
-            ref={barRef}
-        >
-            {workspaces.map((workspace) => {
-                return workspaceCard(workspace);
-            })}
+        <div>
+            <div
+                className="workspacesBar scroll"
+                onWheel={(event) => {
+                    barRef.current.scrollLeft += event.deltaY;
+                }}
+                ref={barRef}
+            >
+                {workspaces.map((workspace) => {
+                    return workspaceCard(workspace);
+                })}
+            </div>
+            {addWorkspaceButton()}
         </div>
     );
 };
@@ -51,6 +75,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     setCurrentWorkspace,
+    addOneWorkspace,
     deleteWorkspace
 };
 

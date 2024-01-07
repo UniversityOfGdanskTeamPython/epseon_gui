@@ -1,70 +1,34 @@
 {
     "workspaces": [
         {
-            "id": 0,
-            "type": "data",
-            "data": {"data": "some data"},
-            "name": "data prev"
+            "workspace_id": -5,
+            "workspace_type": "data",
+            "workspace_data": {"data": "some data"},
+            "workspace_name": "data prev"
         },
         {
-            "id": 1,
-            "type": "data",
-            "data": null,
-            "name": "data gen 1"
+            "workspace_id": -1,
+            "workspace_type": "data",
+            "workspace_data": null,
+            "workspace_name": "data gen 1"
         },
         {
-            "id": 2,
-            "type": "data",
-            "data": null,
-            "name": "data gen 2"
+            "workspace_id": -2,
+            "workspace_type": "data",
+            "workspace_data": null,
+            "workspace_name": "data gen 2"
         },
         {
-            "id": 3,
-            "type": "data",
-            "data": null,
-            "name": "data gen 3"
+            "workspace_id": -3,
+            "workspace_type": "data",
+            "workspace_data": null,
+            "workspace_name": "data gen 3"
         },
         {
-            "id": 4,
-            "type": "data",
-            "data": null,
-            "name": "data gen 4"
-        },
-        {
-            "id": 5,
-            "type": "data",
-            "data": null,
-            "name": "data gen 5"
-        },
-        {
-            "id": 6,
-            "type": "data",
-            "data": null,
-            "name": "data gen 6"
-        },
-        {
-            "id": 7,
-            "type": "data",
-            "data": null,
-            "name": "data gen 7"
-        },
-        {
-            "id": 8,
-            "type": "data",
-            "data": null,
-            "name": "data gen 8"
-        },
-        {
-            "id": 9,
-            "type": "data",
-            "data": null,
-            "name": "data gen 9"
-        },
-        {
-            "id": 10,
-            "type": "data",
-            "data": null,
-            "name": "data gen 10"
+            "workspace_id": -4,
+            "workspace_type": "data",
+            "workspace_data": null,
+            "workspace_name": "data gen 4"
         }
     ],
     "devices": [

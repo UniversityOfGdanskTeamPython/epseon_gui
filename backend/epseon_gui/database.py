@@ -1,20 +1,25 @@
 """Module for handling database session."""
 from __future__ import annotations
 
-from os import getenv
+import platform
+from pathlib import Path
 from typing import Any, Generator
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-POSTGRES_USER = getenv("POSTGRES_USER", "postgres")
-POSTGRES_PASSWORD = getenv("POSTGRES_PASSWORD", "password")
-SQL_HOST = getenv("SQL_HOST", "default")
-POSTGRES_DB = getenv("POSTGRES_DB", "default")
-
-DATABASE_URL = (
-    f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{SQL_HOST}:5432/{POSTGRES_DB}"
+FILE_PATH = (
+    (
+        Path("~/AppData/Local/Epseon/")
+        if platform.system() == "Windows"
+        else Path("~/.epseon/")
+    )
+    .expanduser()
+    .resolve()
 )
+FILE_PATH.mkdir(0o666, parents=True, exist_ok=True)
+FILE_NAME = "database"
+DATABASE_URL = f"sqlite:///{FILE_PATH}/{FILE_NAME}"
 
 
 engine = create_engine(DATABASE_URL)

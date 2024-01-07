@@ -58,6 +58,7 @@ uvicorn = "^0.24.0.post1"
 sqlalchemy = "^2.0.23"
 fastapi = "^0.104.1"
 psycopg2-binary = "^2.9.9"
+click = "^8.1.7"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.7.1"
@@ -89,6 +90,9 @@ pygments = "^2.17.2"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry.scripts]
+epseon-gui = 'epseon_gui.console:main'
+epseon_gui = 'epseon_gui.console:main'
 
 [tool.poe.tasks]
 # -------------------------------------------------------------------------------------
@@ -148,6 +152,7 @@ ignore = [
     "TCH001", # Move application import {} into a type-checking block
     "D105",   # Adding docstrings in all magic methods doesn't make sense, as usually they are just boilerplate to support operators.
     "FIX002", # Line contains TODO, consider resolving the issue
+    "B008",   # Interferes with Depends(get_db)
 ]
 show-fixes = true
 target-version = "py38"

@@ -1150,5 +1150,4 @@ MigrationBackup/
 output.png
 \#*.*
 log/
-requirements*.txt
 /backend/epseon_gui/static/

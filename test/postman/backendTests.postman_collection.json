@@ -1,0 +1,143 @@
+{
+    "info": {
+        "_postman_id": "c6311514-80db-4041-9ffa-a114f1127827",
+        "name": "backend",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "24385841",
+        "_collection_link": "https://speeding-resonance-160123.postman.co/workspace/epseon~a17ff754-ccae-427c-8970-adb095128472/collection/24385841-c6311514-80db-4041-9ffa-a114f1127827?action=share&source=collection_link&creator=24385841"
+    },
+    "item": [
+        {
+            "name": "get all workspaces",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/workspaces",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["workspaces"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "get workspace by id",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/workspaces/1",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["workspaces", "1"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "add workspace",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"workspace_type\": \"data\",\r\n    \"workspace_name\": \"Workspace 1\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:5000/workspaces",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["workspaces"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "delete workspace",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/workspaces/1",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["workspaces", "1"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "delete everything",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:5000/workspaces",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["workspaces"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "edit workspace",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"workspace_type\": \"data\",\r\n    \"workspace_name\": \"Workspace 1 edited\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:5000/workspaces/1",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["workspaces", "1"]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "add generationData to workspace",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"first_level\": 12,\r\n    \"last_level\": 14,\r\n    \"first_atom_mass\": 4.56,\r\n    \"second_atom_mass\": 2.45,\r\n    \"distance_to_asymptote\": 0.00012,\r\n    \"integration_step\": 0.14,\r\n    \"dispatch_count\": 1024,\r\n    \"group_size\": 128,\r\n    \"floating_point_precision\": 32\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:5000/workspaces/1/generationData",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "5000",
+                    "path": ["workspaces", "1", "generationData"]
+                }
+            },
+            "response": []
+        }
+    ]
+}
