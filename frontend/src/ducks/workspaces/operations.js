@@ -1,7 +1,8 @@
 import axios from "axios";
 import store from "../store";
 import {addOneWorkspace, addMultipleWorkspaces, deleteWorkspace} from "./actions";
-import {BACKEND_PORT} from "../../../.env";
+
+const BACKEND_PORT = "http://localhost:5000";
 
 export const addWorkspace = async (workspace) => {
     await axios
