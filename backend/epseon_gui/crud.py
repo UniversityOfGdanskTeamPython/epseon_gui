@@ -50,6 +50,10 @@ def delete_workspace(db: Session, workspace_id: int) -> None:
         )
         if workspace_generation_data_to_delete:
             db.delete(workspace_generation_data_to_delete)
+
+            db.query(models.GeneratedData).filter(
+                models.GeneratedData.workspace_id == workspace_id,
+            ).delete()
     db.commit()
 
 
@@ -83,6 +87,7 @@ def remove_all_workspaces(db: Session) -> None:
     """Remove all workspaces from bd."""
     db.query(models.GenerationData).delete()
     db.query(models.Workspace).delete()
+    db.query(models.GeneratedData).delete()
     db.commit()
 
 

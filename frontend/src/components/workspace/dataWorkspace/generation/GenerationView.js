@@ -2,12 +2,19 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
 import t from "../../../../ducks/languages/operations";
 import DevicePanel from "./DevicePanel";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
+const GenerationView = ({workspace}, props) => {
     const [dispatchCount, setDispatchCount] = useState("");
     const [groupSize, setGroupSize] = useState("");
     const [floatingPointPrecision, setFloatingPointPrecision] = useState(32);
+
+    const [firstLevel, setFirstLevel] = useState("");
+    const [lastLevel, setLastLevel] = useState("");
+    const [firstAtomMass, setFirstAtomMass] = useState("");
+    const [secondAtomMass, setSecondAtomMass] = useState("");
+    const [distanceToAsymptote, setDistanceToAsymptote] = useState("");
+    const [integrationStep, setIntegrationStep] = useState("");
 
     const [potentialWellWidth, setPotentialWellWidth] = useState("");
     const [dissociationEnergy, setDissociationEnergy] = useState("");
@@ -18,7 +25,33 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
     const [dataStep, setDataStep] = useState("");
     const [dataCount, setDataCount] = useState("");
 
-    // const workspace = workspaces.find((workspace) => workspace.id === openWorkspaceId);
+    useEffect(() => {
+        const generation_data = workspace.workspace_generation_data[0];
+        if (generation_data) {
+            setDispatchCount(generation_data.dispatch_count);
+            setGroupSize(generation_data.group_size);
+            setFloatingPointPrecision(generation_data.floating_point_precision);
+
+            setFirstLevel(generation_data.first_level);
+            setLastLevel(generation_data.last_level);
+            setFirstAtomMass(generation_data.first_atom_mass);
+            setSecondAtomMass(generation_data.second_atom_mass);
+            setDistanceToAsymptote(generation_data.distance_to_asymptote);
+            setIntegrationStep(generation_data.integration_step);
+        } else {
+            setDispatchCount("");
+            setGroupSize("");
+            setFloatingPointPrecision("");
+
+            setFirstLevel("");
+            setLastLevel("");
+            setFirstAtomMass("");
+            setSecondAtomMass("");
+            setDistanceToAsymptote("");
+            setIntegrationStep("");
+        }
+    }, [workspace]);
+
     const buttons = () => {
         return (
             <div className="buttonsPanel">
@@ -38,9 +71,9 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                     generate{" "}
                     <FontAwesomeIcon icon="fa-solid fa-gears" className="smallIcon" />
                 </div>
-                {noData ? null : (
+                {workspace.has_generated_data ? (
                     <div className="button bgColor1">see generated data</div>
-                )}
+                ) : null}
             </div>
         );
     };
@@ -137,27 +170,63 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
                         <div className="panelTitle">{t("Physical settings")}</div>
                         <div className="formInput">
                             <label>{t("First level")}</label>
-                            <input />
+                            <input
+                                type="number"
+                                value={firstLevel}
+                                onChange={(event) => {
+                                    setFirstLevel(event.target.value);
+                                }}
+                            />
                         </div>
                         <div className="formInput">
                             <label>{t("Last level")}</label>
-                            <input />
+                            <input
+                                type="number"
+                                value={lastLevel}
+                                onChange={(event) => {
+                                    setLastLevel(event.target.value);
+                                }}
+                            />
                         </div>
                         <div className="formInput">
                             <label>{t("First mass atom")}</label>
-                            <input />
+                            <input
+                                type="number"
+                                value={firstAtomMass}
+                                onChange={(event) => {
+                                    setFirstAtomMass(event.target.value);
+                                }}
+                            />
                         </div>
                         <div className="formInput">
                             <label>{t("Second mass atom")}</label>
-                            <input />
+                            <input
+                                type="number"
+                                value={secondAtomMass}
+                                onChange={(event) => {
+                                    setSecondAtomMass(event.target.value);
+                                }}
+                            />
                         </div>
                         <div className="formInput">
                             <label>{t("Distance to asymptote")}</label>
-                            <input />
+                            <input
+                                type="number"
+                                value={distanceToAsymptote}
+                                onChange={(event) => {
+                                    setDistanceToAsymptote(event.target.value);
+                                }}
+                            />
                         </div>
                         <div className="formInput">
                             <label>{t("Integration step")}</label>
-                            <input />
+                            <input
+                                type="number"
+                                value={integrationStep}
+                                onChange={(event) => {
+                                    setIntegrationStep(event.target.value);
+                                }}
+                            />
                         </div>
                     </div>
                     <div className="panel bgColor1">
@@ -306,8 +375,6 @@ const GenerationView = ({noData, openWorkspaceId, workspaces}, props) => {
 
 const mapStateToProps = (state) => {
     return {
-        openWorkspaceId: state.workspacesReducer.openWorkspaceId,
-        workspaces: state.workspacesReducer.workspaces,
         language: state.languagesReducer.language
     };
 };

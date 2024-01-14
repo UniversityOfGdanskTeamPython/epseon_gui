@@ -2,17 +2,16 @@ import {connect} from "react-redux";
 import GenerationView from "./generation/GenerationView";
 import PreviewView from "./preview/PreviewView";
 
-const DataWorkspace = ({openWorkspaceId, workspaces}, props) => {
-    const workspace = workspaces.find((workspace) => workspace.id === openWorkspaceId);
-
-    return workspace.data !== null ? <PreviewView /> : <GenerationView noData={true} />;
+const DataWorkspace = ({workspace}, props) => {
+    return workspace.has_generated_data ? (
+        <PreviewView workspace={workspace} />
+    ) : (
+        <GenerationView workspace={workspace} />
+    );
 };
 
 const mapStateToProps = (state) => {
-    return {
-        openWorkspaceId: state.workspacesReducer.openWorkspaceId,
-        workspaces: state.workspacesReducer.workspaces
-    };
+    return {};
 };
 
 const mapDispatchToProps = {};

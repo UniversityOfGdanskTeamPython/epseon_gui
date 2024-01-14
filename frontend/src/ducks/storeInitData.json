@@ -3,32 +3,36 @@
         {
             "workspace_id": -5,
             "workspace_type": "data",
-            "workspace_data": {"data": "some data"},
-            "workspace_name": "data prev"
+            "workspace_generation_data": [
+                {
+                    "first_level": 12,
+                    "last_level": 14,
+                    "first_atom_mass": 4.56,
+                    "second_atom_mass": 2.45,
+                    "distance_to_asymptote": 0.00012,
+                    "integration_step": 0.14,
+                    "dispatch_count": 1024,
+                    "group_size": 128,
+                    "floating_point_precision": 32,
+                    "generation_data_id": 1
+                }
+            ],
+            "workspace_name": "data prev",
+            "has_generated_data": true
         },
         {
             "workspace_id": -1,
             "workspace_type": "data",
-            "workspace_data": null,
-            "workspace_name": "data gen 1"
+            "workspace_generation_data": [],
+            "workspace_name": "data gen 1",
+            "has_generated_data": false
         },
         {
             "workspace_id": -2,
             "workspace_type": "data",
-            "workspace_data": null,
-            "workspace_name": "data gen 2"
-        },
-        {
-            "workspace_id": -3,
-            "workspace_type": "data",
-            "workspace_data": null,
-            "workspace_name": "data gen 3"
-        },
-        {
-            "workspace_id": -4,
-            "workspace_type": "data",
-            "workspace_data": null,
-            "workspace_name": "data gen 4"
+            "workspace_generation_data": [],
+            "workspace_name": "data gen 2",
+            "has_generated_data": false
         }
     ],
     "devices": [

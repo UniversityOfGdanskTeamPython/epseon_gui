@@ -5,14 +5,14 @@ import DataWorkspace from "./dataWorkspace/DataWorkspace";
 
 const WorkspaceWrapper = ({openWorkspaceId, workspaces}, props) => {
     const currentWorkspace = (openWorkspaceId) => {
-        if (openWorkspaceId === null) {
-            return <DefaultWorkspace />;
-        }
-        const workspaceData = workspaces.find(
-            (workspace) => workspace.id === openWorkspaceId
+        const openWorkspace = workspaces.find(
+            (workspace) => workspace.workspace_id === openWorkspaceId
         );
-        if (workspaceData.type === "data") {
-            return <DataWorkspace />;
+
+        if (openWorkspace == null) {
+            return <DefaultWorkspace />;
+        } else if (openWorkspace.workspace_type === "data") {
+            return <DataWorkspace workspace={openWorkspace} />;
         }
     };
 

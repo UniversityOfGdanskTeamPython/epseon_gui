@@ -38,3 +38,12 @@ class Workspace(WorkspaceBase):
 
     workspace_id: int
     workspace_generation_data: list[GenerationData]
+    has_generated_data: bool
+
+
+class GeneratedData(BaseModel):
+    """Schema for generated data."""
+
+    model_config = ConfigDict(from_attributes=True)
+    some_data: int
+    workspace_id: int

@@ -1,14 +1,11 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
-import {
-    setCurrentWorkspace,
-    addOneWorkspace,
-    deleteWorkspace
-} from "../../ducks/workspaces/actions";
+import {setCurrentWorkspace} from "../../ducks/workspaces/actions";
+import {addWorkspace, delWorkspace} from "../../ducks/workspaces/operations";
 import {useRef} from "react";
 
 const WorkspacesBar = (
-    {workspaces, setCurrentWorkspace, addOneWorkspace, deleteWorkspace},
+    {workspaces, setCurrentWorkspace, addWorkspace, delWorkspace},
     props
 ) => {
     const barRef = useRef(null);
@@ -19,7 +16,7 @@ const WorkspacesBar = (
                 key={workspace.workspace_id}
                 className="workspaceCard bgColor2"
                 onClick={() => {
-                    setCurrentWorkspace(workspace.id);
+                    setCurrentWorkspace(workspace.workspace_id);
                 }}
             >
                 <div>{workspace.workspace_name}</div>
@@ -28,7 +25,7 @@ const WorkspacesBar = (
                     className="smallIcon delete"
                     onClick={(event) => {
                         event.stopPropagation();
-                        deleteWorkspace(workspace.id);
+                        delWorkspace(workspace.workspace_id);
                     }}
                 />
             </div>
@@ -40,7 +37,11 @@ const WorkspacesBar = (
             <div
                 className="bgColor2"
                 onClick={() => {
-                    addOneWorkspace("new workspace");
+                    const newWorkspace = {
+                        workspace_type: "data",
+                        workspace_name: "new workspace"
+                    };
+                    addWorkspace(newWorkspace);
                 }}
             >
                 <FontAwesomeIcon icon="fa-solid fa-plus" className="smallIcon" />
@@ -75,8 +76,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     setCurrentWorkspace,
-    addOneWorkspace,
-    deleteWorkspace
+    addWorkspace,
+    delWorkspace
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkspacesBar);

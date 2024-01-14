@@ -8,7 +8,8 @@ export const addWorkspace = async (workspace) => {
     await axios
         .post(`${BACKEND_PORT}/workspaces`, workspace)
         .then((res) => {
-            store.dispatch(addOneWorkspace({...workspace, id: res.data.id}));
+            console.log(res);
+            store.dispatch(addOneWorkspace(res));
         })
         .catch((err) => {
             window.alert(err.response.data);

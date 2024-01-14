@@ -12,4 +12,6 @@ sessionmaker
 sqlalchemy
 Szpy
 Szpyruk
+Topbar
 uvicorn
+xmark

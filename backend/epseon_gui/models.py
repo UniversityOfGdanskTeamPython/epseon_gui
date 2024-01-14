@@ -1,19 +1,20 @@
 """Module containing orm models."""
 from __future__ import annotations
 
-from sqlalchemy import Column, Float, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from epseon_gui.database import Base
 
 
 class Workspace(Base):
-    """Model for Workspace."""
+    """Model for workspace."""
 
     __tablename__ = "workspaces"
     workspace_id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     workspace_type = Column(String)
     workspace_name = Column(String)
+    has_generated_data = Column(Boolean, default=False)
 
     workspace_generation_data = relationship(
         "GenerationData",
@@ -22,7 +23,7 @@ class Workspace(Base):
 
 
 class GenerationData(Base):
-    """Model for GenerationData."""
+    """Model for storing data used in generation."""
 
     __tablename__ = "generation_data"
     generation_data_id = Column(
@@ -49,4 +50,22 @@ class GenerationData(Base):
     connected_workspace = relationship(
         "Workspace",
         back_populates="workspace_generation_data",
+    )
+
+
+class GeneratedData(Base):
+    """Model for generated data."""
+
+    __tablename__ = "generated_data"
+    generated_data_id = Column(
+        Integer,
+        primary_key=True,
+        index=True,
+        autoincrement=True,
+    )
+    some_data = Column(Integer)
+    workspace_id = Column(
+        Integer,
+        ForeignKey("workspaces.workspace_id"),
+        nullable=False,
     )
