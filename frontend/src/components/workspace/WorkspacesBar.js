@@ -35,7 +35,7 @@ const WorkspacesBar = (
     const addWorkspaceButton = () => {
         return (
             <div
-                className="bgColor2"
+                className="addButton bgColor2"
                 onClick={() => {
                     const newWorkspace = {
                         workspace_type: "data",
@@ -45,13 +45,13 @@ const WorkspacesBar = (
                 }}
             >
                 <FontAwesomeIcon icon="fa-solid fa-plus" className="smallIcon" />
-                new workspace
+                {/* new workspace */}
             </div>
         );
     };
 
     return (
-        <div>
+        <div className="workspacesBarWrapper">
             <div
                 className="workspacesBar scroll"
                 onWheel={(event) => {

@@ -20,6 +20,7 @@ $fontSizeSmallText: 15px;
 $boldFontWeight: 600;
 $paddingSize: 10px;
 $paddingSizeSmall: 5px;
+$borderRadiusHuge: 60px;
 $borderRadius: 0; //30px;
 $borderRadiusSmall: 15px;
 $iconSizeSmall: 20px;
@@ -191,33 +192,50 @@ body {
         height: calc(100vh - 2 * $paddingSize - $iconSizeMedium);
         width: 100vw;
 
-        .workspacesBar {
+        .workspacesBarWrapper {
             display: flex;
-            gap: $paddingSize;
+            justify-content: space-between;
             padding: $paddingSize;
-            overflow-x: scroll;
-            white-space: nowrap;
+            padding-bottom: 0;
 
-            .workspaceCard {
+            .workspacesBar {
                 display: flex;
-                align-items: center;
                 gap: $paddingSize;
-                border-radius: $borderRadius;
-                padding: $paddingSize;
-                cursor: pointer;
+                padding-bottom: $paddingSizeSmall;
+                overflow-x: overlay;
+                // overflow-x: auto;
+                white-space: nowrap;
+                flex-grow: 1;
 
-                .delete {
-                    transition: $animationSpeed;
-                }
+                .workspaceCard {
+                    display: flex;
+                    align-items: center;
+                    gap: $paddingSize;
+                    border-radius: $borderRadius;
+                    padding: $paddingSize;
+                    cursor: pointer;
 
-                .delete:hover {
-                    color: $deleteColor;
+                    .delete {
+                        transition: $animationSpeed;
+                    }
+
+                    .delete:hover {
+                        color: $deleteColor;
+                    }
                 }
+            }
+
+            .addButton {
+                margin: $paddingSize;
+                align-self: center;
+                // border-radius: 100%;
+                padding: $paddingSizeSmall;
             }
         }
 
         .workspace {
             margin: $paddingSize;
+            margin-top: $paddingSizeSmall;
             padding: $paddingSize;
             border-radius: $borderRadius;
             flex-grow: 1;
