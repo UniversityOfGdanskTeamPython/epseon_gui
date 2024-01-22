@@ -1,70 +1,38 @@
 {
     "workspaces": [
         {
-            "id": 0,
-            "type": "data",
-            "data": {"data": "some data"},
-            "name": "data prev"
+            "workspace_id": -5,
+            "workspace_type": "data",
+            "workspace_generation_data": [
+                {
+                    "first_level": 12,
+                    "last_level": 14,
+                    "first_atom_mass": 4.56,
+                    "second_atom_mass": 2.45,
+                    "distance_to_asymptote": 0.00012,
+                    "integration_step": 0.14,
+                    "dispatch_count": 1024,
+                    "group_size": 128,
+                    "floating_point_precision": 32,
+                    "generation_data_id": 1
+                }
+            ],
+            "workspace_name": "data prev",
+            "has_generated_data": true
         },
         {
-            "id": 1,
-            "type": "data",
-            "data": null,
-            "name": "data gen 1"
+            "workspace_id": -1,
+            "workspace_type": "data",
+            "workspace_generation_data": [],
+            "workspace_name": "data gen 1",
+            "has_generated_data": false
         },
         {
-            "id": 2,
-            "type": "data",
-            "data": null,
-            "name": "data gen 2"
-        },
-        {
-            "id": 3,
-            "type": "data",
-            "data": null,
-            "name": "data gen 3"
-        },
-        {
-            "id": 4,
-            "type": "data",
-            "data": null,
-            "name": "data gen 4"
-        },
-        {
-            "id": 5,
-            "type": "data",
-            "data": null,
-            "name": "data gen 5"
-        },
-        {
-            "id": 6,
-            "type": "data",
-            "data": null,
-            "name": "data gen 6"
-        },
-        {
-            "id": 7,
-            "type": "data",
-            "data": null,
-            "name": "data gen 7"
-        },
-        {
-            "id": 8,
-            "type": "data",
-            "data": null,
-            "name": "data gen 8"
-        },
-        {
-            "id": 9,
-            "type": "data",
-            "data": null,
-            "name": "data gen 9"
-        },
-        {
-            "id": 10,
-            "type": "data",
-            "data": null,
-            "name": "data gen 10"
+            "workspace_id": -2,
+            "workspace_type": "data",
+            "workspace_generation_data": [],
+            "workspace_name": "data gen 2",
+            "has_generated_data": false
         }
     ],
     "devices": [

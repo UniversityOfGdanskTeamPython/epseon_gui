@@ -1,68 +1,122 @@
 """Backend of EPSEON GUI."""
 from __future__ import annotations
 
-from typing import Dict, List
+from pathlib import Path
+from typing import TYPE_CHECKING, List
 
-from fastapi import Depends, FastAPI
+from fastapi import Depends, FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from epseon_gui import crud, models, schemas
 from epseon_gui.database import engine, get_db
+
+if TYPE_CHECKING:
+    from sqlalchemy.orm import Session
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/workspaces/", response_model=List[schemas.WorkspaceGeneration])
-async def get_all_workspaces_from_db() -> List[models.Workspace]:
+STATIC_DIRECTORY = Path(__file__).parent / "static"
+
+
+@app.get("/workspaces", response_model=list[schemas.Workspace])
+async def get_all_workspaces_from_db(
+    db: Session = Depends(get_db),
+) -> List[models.Workspace]:
     """Get list of all workspaces and their data."""
-    db = Depends(get_db)
     return crud.get_all_workspaces(db)
 
 
-@app.delete("/workspaces/")
-async def delete_all_workspaces_from_db() -> None:
+@app.delete("/workspaces")
+async def delete_all_workspaces_from_db(db: Session = Depends(get_db)) -> None:
     """Delete all workspaces."""
-    db = Depends(get_db)
     crud.remove_all_workspaces(db)
 
 
-@app.get("/workspace/{workspace_id}", response_model=schemas.WorkspaceGeneration)
-async def get_workspace_by_id(workspace_id: str) -> models.Workspace:
+@app.get("/workspaces/{workspace_id}", response_model=schemas.Workspace)
+async def get_workspace_by_id(
+    workspace_id: int,
+    db: Session = Depends(get_db),
+) -> models.Workspace:
     """Get workspace by id."""
-    db = Depends(get_db)
-    return crud.get_workspace_by_id(db, workspace_id)
+    workspace = crud.get_workspace_by_id(db, workspace_id)
+    if workspace is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Workspace with specified id doesn't exists",
+        )
+    return workspace
 
 
-@app.post("/workspace/")
-async def create_workspace_in_db(workspace: schemas.Workspace) -> Dict[str, str]:
+@app.post("/workspaces", response_model=schemas.Workspace)
+async def create_workspace_in_db(
+    workspace: schemas.WorkspaceBase,
+    db: Session = Depends(get_db),
+) -> schemas.Workspace:
     """Add one workspace. Then return its generated id."""
-    db = Depends(get_db)
     return crud.create_workspace(db, workspace)
 
 
-@app.delete("/workspace/{workspace_id}")
-async def delete_workspace_by_id(workspace_id: str) -> None:
+@app.delete("/workspaces/{workspace_id}")
+async def delete_workspace_by_id(
+    workspace_id: int,
+    db: Session = Depends(get_db),
+) -> None:
     """Delete workspace by id."""
-    db = Depends(get_db)
     crud.delete_workspace(db, workspace_id)
 
 
-@app.put("/workspace/{workspace_id}")
+@app.put("/workspaces/{workspace_id}", response_model=schemas.Workspace)
 async def update_workspace_in_db_by_id(
-    workspace_id: str,
-    workspace: schemas.WorkspaceGeneral,
-) -> None:
+    workspace_id: int,
+    new_workspace_data: schemas.WorkspaceBase,
+    db: Session = Depends(get_db),
+) -> schemas.Workspace:
     """Update workspace."""
-    db = Depends(get_db)
-    crud.edit_workspace(db, workspace_id, workspace)
+    old_workspace = crud.get_workspace_by_id(db, workspace_id)
+    if old_workspace is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Workspace with specified id doesn't exists",
+        )
+    return crud.edit_workspace(db, workspace_id, new_workspace_data)
 
 
-@app.put("/workspace/{workspace_id}")
-async def update_generation_data_in_db_by_id(
-    workspace_id: str,
-    generation_data: schemas.GenerationDataGeneral,
-) -> None:
-    """Update workspace by id."""
-    db = Depends(get_db)
-    crud.edit_generation_data(db, workspace_id, generation_data)
+@app.post(
+    "/workspaces/{workspace_id}/generationData",
+    response_model=schemas.GenerationData,
+)
+async def add_generation_data_to_workspace_in_db_by_id(
+    workspace_id: int,
+    generation_data: schemas.GenerationDataBase,
+    db: Session = Depends(get_db),
+) -> schemas.GenerationData:
+    """Add generation data to workspace specified by id."""
+    workspace = crud.get_workspace_by_id(db, workspace_id)
+
+    if workspace is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Workspace with specified id doesn't exists",
+        )
+
+    if workspace.workspace_generation_data != []:
+        raise HTTPException(
+            status_code=409,
+            detail="Specified workspace already has generation data",
+        )
+
+    return crud.add_generation_data_to_workspace(db, workspace_id, generation_data)
+
+
+app.mount("/", StaticFiles(directory=STATIC_DIRECTORY.as_posix()), name="static")

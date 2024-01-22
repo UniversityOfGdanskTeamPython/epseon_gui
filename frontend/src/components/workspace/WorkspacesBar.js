@@ -1,44 +1,69 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {connect} from "react-redux";
-import {setCurrentWorkspace, deleteWorkspace} from "../../ducks/workspaces/actions";
+import {setCurrentWorkspace} from "../../ducks/workspaces/actions";
+import {addWorkspace, delWorkspace} from "../../ducks/workspaces/operations";
 import {useRef} from "react";
 
-const WorkspacesBar = ({workspaces, setCurrentWorkspace, deleteWorkspace}, props) => {
+const WorkspacesBar = (
+    {workspaces, setCurrentWorkspace, addWorkspace, delWorkspace},
+    props
+) => {
     const barRef = useRef(null);
 
     const workspaceCard = (workspace) => {
         return (
             <div
-                key={workspace.id}
+                key={workspace.workspace_id}
                 className="workspaceCard bgColor2"
                 onClick={() => {
-                    setCurrentWorkspace(workspace.id);
+                    setCurrentWorkspace(workspace.workspace_id);
                 }}
             >
-                <div>{workspace.name}</div>
+                <div>{workspace.workspace_name}</div>
                 <FontAwesomeIcon
                     icon="fa-solid fa-xmark"
                     className="smallIcon delete"
                     onClick={(event) => {
                         event.stopPropagation();
-                        deleteWorkspace(workspace.id);
+                        delWorkspace(workspace.workspace_id);
                     }}
                 />
             </div>
         );
     };
 
+    const addWorkspaceButton = () => {
+        return (
+            <div
+                className="addButton bgColor2"
+                onClick={() => {
+                    const newWorkspace = {
+                        workspace_type: "data",
+                        workspace_name: "new workspace"
+                    };
+                    addWorkspace(newWorkspace);
+                }}
+            >
+                <FontAwesomeIcon icon="fa-solid fa-plus" className="smallIcon" />
+                {/* new workspace */}
+            </div>
+        );
+    };
+
     return (
-        <div
-            className="workspacesBar scroll"
-            onWheel={(event) => {
-                barRef.current.scrollLeft += event.deltaY;
-            }}
-            ref={barRef}
-        >
-            {workspaces.map((workspace) => {
-                return workspaceCard(workspace);
-            })}
+        <div className="workspacesBarWrapper">
+            <div
+                className="workspacesBar scroll"
+                onWheel={(event) => {
+                    barRef.current.scrollLeft += event.deltaY;
+                }}
+                ref={barRef}
+            >
+                {workspaces.map((workspace) => {
+                    return workspaceCard(workspace);
+                })}
+            </div>
+            {addWorkspaceButton()}
         </div>
     );
 };
@@ -51,7 +76,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     setCurrentWorkspace,
-    deleteWorkspace
+    addWorkspace,
+    delWorkspace
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkspacesBar);

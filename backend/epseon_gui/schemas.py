@@ -1,14 +1,13 @@
-"""Module containing Pydantic models."""
+"""Module containing Pydantic models, that act as data containers."""
 from __future__ import annotations
 
-from typing import Optional
-
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
-class GenerationDataGeneral(BaseModel):
-    """Generation data schema for sending data to db."""
+class GenerationDataBase(BaseModel):
+    """Base GenerationData schema, used for sending data to db."""
 
+    model_config = ConfigDict(from_attributes=True)
     first_level: int
     last_level: int
     first_atom_mass: float
@@ -20,35 +19,31 @@ class GenerationDataGeneral(BaseModel):
     floating_point_precision: int
 
 
-class GenerationData(GenerationDataGeneral):
-    """GenerationData schema for reading/updating data."""
+class GenerationData(GenerationDataBase):
+    """Complete GenerationData schema, used for reading/updating data."""
 
-    device_id: int
+    generation_data_id: int
 
 
-class WorkspaceGeneral(BaseModel):
-    """WorkspaceGeneral for sending data to db.."""
+class WorkspaceBase(BaseModel):
+    """Base Workspace schema, used for sending data to db.."""
 
+    model_config = ConfigDict(from_attributes=True)
     workspace_type: str
     workspace_name: str
 
 
-class WorkspaceGeneration(WorkspaceGeneral):
-    """WorkspaceGeneration for reading/updating data.."""
+class Workspace(WorkspaceBase):
+    """Complete Workspace schema, used for reading/updating data."""
 
-    workspace_id: str
-    workspace_generation_data: Optional[GenerationData]
+    workspace_id: int
+    workspace_generation_data: list[GenerationData]
+    has_generated_data: bool
 
 
-class Workspace(WorkspaceGeneral):
-    """Workspace."""
+class GeneratedData(BaseModel):
+    """Schema for generated data."""
 
-    workspace_generation_data: Optional[GenerationData]
-
-    class Config:
-        """Configuration. 'orm_mode = True' will tell the Pydantic model to read the
-        data even if it is not a dict, but an ORM model.
-        """
-
-        orm_mode = True
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
+    some_data: int
+    workspace_id: int

@@ -9,7 +9,7 @@ import {useState} from "react";
 import approximationFunctions from "./approximationMethods";
 import WidgetCurveSelection from "./WidgetCurveSelection";
 
-const PreviewView = ({openWorkspaceId, workspaces}, props) => {
+const PreviewView = ({workspace}, props) => {
     const curves = [
         {id: 0, name: "level 0", value: wave0},
         {id: 1, name: "level 1", value: wave1},
@@ -62,10 +62,7 @@ const PreviewView = ({openWorkspaceId, workspaces}, props) => {
 };
 
 const mapStateToProps = (state) => {
-    return {
-        openWorkspaceId: state.workspacesReducer.openWorkspaceId,
-        workspaces: state.workspacesReducer.workspaces
-    };
+    return {};
 };
 
 const mapDispatchToProps = {};

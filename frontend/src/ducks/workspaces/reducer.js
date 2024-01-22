@@ -14,7 +14,7 @@ const workspacesReducer = (
             return {
                 ...state,
                 workspaces: state.workspaces.filter((workspace) => {
-                    return workspace.id === action.payload ? false : true;
+                    return workspace.workspace_id === action.payload ? false : true;
                 }),
                 openWorkspaceId:
                     state.openWorkspaceId === action.payload

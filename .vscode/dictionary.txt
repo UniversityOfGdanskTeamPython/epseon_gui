@@ -4,6 +4,7 @@ dotenv
 epseon
 fastapi
 fontawesome
+fortawesome
 joinedload
 mateuszzalewski
 Pydantic
@@ -11,3 +12,6 @@ sessionmaker
 sqlalchemy
 Szpy
 Szpyruk
+Topbar
+uvicorn
+xmark
