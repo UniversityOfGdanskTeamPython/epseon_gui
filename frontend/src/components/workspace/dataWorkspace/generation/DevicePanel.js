@@ -3,9 +3,8 @@ import {connect} from "react-redux";
 const DevicePanel = ({devices}, props) => {
     const deviceCard = (deviceData) => {
         const objectEntries = Object.entries(deviceData);
-        console.log(objectEntries);
         return (
-            <div className="deviceCard" key={objectEntries.id}>
+            <div className="deviceCard" key={deviceData.id}>
                 <div>select</div>
                 <div className="smallText">
                     {objectEntries.map((entry) => deviceCardField(entry[0], entry[1]))}

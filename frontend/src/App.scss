@@ -45,7 +45,12 @@ $scrollbarSize: 5px;
     }
 }
 
-@mixin input($bgColor, $textColor, $bgColorFocus: mix($bgColor, black, 90%)) {
+@mixin input(
+    $bgColor,
+    $textColor,
+    $disabledColor,
+    $bgColorFocus: mix($bgColor, black, 90%)
+) {
     input {
         background-color: $bgColor;
         color: $textColor;
@@ -57,6 +62,10 @@ $scrollbarSize: 5px;
     input:focus {
         outline: none;
         background-color: $bgColorFocus;
+    }
+
+    input:disabled {
+        background-color: $disabledColor;
     }
 }
 
@@ -99,15 +108,11 @@ $scrollbarSize: 5px;
         color: $darkThemeText;
     }
 
-    .bigIcon {
-        filter: invert(1);
-    }
-
     .scroll {
         @include scrollbar($darkThemeMain2, $darkThemeMain3);
     }
 
-    @include input($darkThemeMain2, $darkThemeText);
+    @include input($darkThemeMain2, $darkThemeText, $darkThemeMain1);
 }
 
 .lightTheme {
@@ -135,14 +140,14 @@ $scrollbarSize: 5px;
     }
 
     .bigIcon {
-        color: $lightThemeText;
+        filter: invert(1);
     }
 
     .scroll {
         @include scrollbar($lightThemeMain3, $lightThemeMain2);
     }
 
-    @include input($lightThemeMain2, $lightThemeText);
+    @include input($lightThemeMain2, $lightThemeText, $lightThemeMain1);
 }
 
 @mixin horizontalFlex {

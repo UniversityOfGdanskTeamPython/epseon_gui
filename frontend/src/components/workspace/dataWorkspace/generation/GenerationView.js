@@ -3,8 +3,11 @@ import {connect} from "react-redux";
 import t from "../../../../ducks/languages/operations";
 import DevicePanel from "./DevicePanel";
 import {useEffect, useState} from "react";
+import Form from "./Form";
 
 const GenerationView = ({workspace}, props) => {
+    const [genParamsSpecified, setGenParamsSpecified] = useState(true);
+
     const [dispatchCount, setDispatchCount] = useState("");
     const [groupSize, setGroupSize] = useState("");
     const [floatingPointPrecision, setFloatingPointPrecision] = useState(32);
@@ -25,9 +28,48 @@ const GenerationView = ({workspace}, props) => {
     const [dataStep, setDataStep] = useState("");
     const [dataCount, setDataCount] = useState("");
 
+    const PhysicalSettingsFormData = [
+        {label: "First level", value: firstLevel, setter: setFirstLevel},
+        {label: "Last level", value: lastLevel, setter: setLastLevel},
+        {label: "First mass atom", value: firstAtomMass, setter: setFirstAtomMass},
+        {label: "Second mass atom", value: secondAtomMass, setter: setSecondAtomMass},
+        {
+            label: "Distance to asymptote",
+            value: distanceToAsymptote,
+            setter: setDistanceToAsymptote
+        },
+        {label: "Integration step", value: integrationStep, setter: setIntegrationStep}
+    ];
+
+    const MorseCurveParametersFormData = [
+        {
+            label: "Potential well width",
+            value: potentialWellWidth,
+            setter: setPotentialWellWidth
+        },
+        {
+            label: "Dissociation energy",
+            value: dissociationEnergy,
+            setter: setDissociationEnergy
+        },
+        {
+            label: "Equilibrium bond distance",
+            value: equilibriumBondDistance,
+            setter: setEquilibriumBondDistance
+        },
+        {label: "Max r", value: maxR, setter: setMaxR},
+        {label: "Min r", value: minR, setter: setMinR},
+        {label: "Points count", value: pointsCount, setter: setPointsCount},
+        {label: "Data step", value: dataStep, setter: setDataStep},
+        {label: "Data count", value: dataCount, setter: setDataCount}
+    ];
+
     useEffect(() => {
         const generation_data = workspace.workspace_generation_data[0];
-        if (generation_data) {
+
+        if (generation_data !== undefined) {
+            setGenParamsSpecified(true);
+
             setDispatchCount(generation_data.dispatch_count);
             setGroupSize(generation_data.group_size);
             setFloatingPointPrecision(generation_data.floating_point_precision);
@@ -39,6 +81,8 @@ const GenerationView = ({workspace}, props) => {
             setDistanceToAsymptote(generation_data.distance_to_asymptote);
             setIntegrationStep(generation_data.integration_step);
         } else {
+            setGenParamsSpecified(false);
+
             setDispatchCount("");
             setGroupSize("");
             setFloatingPointPrecision("");
@@ -166,69 +210,11 @@ const GenerationView = ({workspace}, props) => {
             </div>
             <div className="generationViewFirstFlex">
                 <div className="generationViewSecondFlex">
-                    <div className="panel bgColor1">
-                        <div className="panelTitle">{t("Physical settings")}</div>
-                        <div className="formInput">
-                            <label>{t("First level")}</label>
-                            <input
-                                type="number"
-                                value={firstLevel}
-                                onChange={(event) => {
-                                    setFirstLevel(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Last level")}</label>
-                            <input
-                                type="number"
-                                value={lastLevel}
-                                onChange={(event) => {
-                                    setLastLevel(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("First mass atom")}</label>
-                            <input
-                                type="number"
-                                value={firstAtomMass}
-                                onChange={(event) => {
-                                    setFirstAtomMass(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Second mass atom")}</label>
-                            <input
-                                type="number"
-                                value={secondAtomMass}
-                                onChange={(event) => {
-                                    setSecondAtomMass(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Distance to asymptote")}</label>
-                            <input
-                                type="number"
-                                value={distanceToAsymptote}
-                                onChange={(event) => {
-                                    setDistanceToAsymptote(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Integration step")}</label>
-                            <input
-                                type="number"
-                                value={integrationStep}
-                                onChange={(event) => {
-                                    setIntegrationStep(event.target.value);
-                                }}
-                            />
-                        </div>
-                    </div>
+                    <Form
+                        title="Physical settings"
+                        fieldsData={PhysicalSettingsFormData}
+                        isDisabled={genParamsSpecified}
+                    />
                     <div className="panel bgColor1">
                         <div className="panelTitle">{t("Hardware settings")}</div>
                         <div className="formInput">
@@ -283,89 +269,11 @@ const GenerationView = ({workspace}, props) => {
                 </div>
                 <div className="generationViewSecondFlex">
                     <DevicePanel />
-                    <div className="panel bgColor1">
-                        <div className="panelTitle">{t("Morse curve parameters")}</div>
-                        <div className="formInput">
-                            <label>{t("Potential well width")}</label>
-                            <input
-                                type="number"
-                                value={potentialWellWidth}
-                                onChange={(event) => {
-                                    setPotentialWellWidth(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Dissociation energy")}</label>
-                            <input
-                                type="number"
-                                value={dissociationEnergy}
-                                onChange={(event) => {
-                                    setDissociationEnergy(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Equilibrium bond distance")}</label>
-                            <input
-                                type="number"
-                                value={equilibriumBondDistance}
-                                onChange={(event) => {
-                                    setEquilibriumBondDistance(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Max r")}</label>
-                            <input
-                                type="number"
-                                value={maxR}
-                                onChange={(event) => {
-                                    setMaxR(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Min r")}</label>
-                            <input
-                                type="number"
-                                value={minR}
-                                onChange={(event) => {
-                                    setMinR(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Points count")}</label>
-                            <input
-                                type="number"
-                                value={pointsCount}
-                                onChange={(event) => {
-                                    setPointsCount(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Data step")}</label>
-                            <input
-                                type="number"
-                                value={dataStep}
-                                onChange={(event) => {
-                                    setDataStep(event.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className="formInput">
-                            <label>{t("Data count")}</label>
-                            <input
-                                type="number"
-                                value={dataCount}
-                                onChange={(event) => {
-                                    setDataCount(event.target.value);
-                                }}
-                            />
-                        </div>
-                    </div>
+                    <Form
+                        title="Morse curve parameters"
+                        fieldsData={MorseCurveParametersFormData}
+                        isDisabled={false}
+                    />
                 </div>
             </div>
             {buttons()}
